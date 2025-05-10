@@ -18,8 +18,7 @@ function HomeScreen(
 
   // Render
   return (
-    <div>
-      <h1>Home</h1>
+    <>
       {localStorage.username && (
         <div>
           <p>{localStorage.username}</p>
@@ -27,11 +26,35 @@ function HomeScreen(
         </div>
       )}
       <p>TBA: Account details</p>
-      <p>TBA: Activity summary, log of hours</p>
-      <p>TBA: Search for orgs and opportunities</p>
+      <nav>
+        <a onClick={logout}>Log Out</a>
+      </nav>
+      {localStorage.role == "student" && (
+        <div>
+          <h1>Student Home</h1>
 
-      <a onClick={logout}>Log Out</a>
-    </div>
+          <p>TBA: Activity summary, log of hours</p>
+          <p>TBA: Search for orgs and opportunities</p>
+        </div>
+      )}
+      {localStorage.role == "school_admin" && (
+        <div>
+          <h1>School Admin Home</h1>
+
+          <p>TBA: List of registered students, logged hours</p>
+          <p>TBA: Report generator</p>
+        </div>
+      )}
+
+      {localStorage.role == "org_admin" && (
+        <div>
+          <h1>NPO Admin Home</h1>
+
+          <p>TBA: List of registered volunteers, contact info</p>
+          <p>TBA: Form to post volunteer opportunities</p>
+        </div>
+      )}
+    </>
   );
 }
 
