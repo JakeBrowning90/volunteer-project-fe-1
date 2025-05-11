@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+// import "./App.css";
 import { Routes, Route, Link, useNavigate } from "react-router";
 
 import LoginScreen from "./components/LoginScreen";

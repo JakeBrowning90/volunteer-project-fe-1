@@ -19,14 +19,14 @@ function HomeScreen(
   // Render
   return (
     <>
-      {localStorage.username && (
-        <div>
-          <p>{localStorage.username}</p>
-          <p>{localStorage.role}</p>
-        </div>
-      )}
-      <p>TBA: Account details</p>
       <nav>
+        {localStorage.username && (
+          <div>
+            <p>{localStorage.username}</p>
+            <p>{localStorage.role}</p>
+          </div>
+        )}
+        <p>TBA: Account details</p>
         <a onClick={logout}>Log Out</a>
       </nav>
       {localStorage.role == "student" && (
