@@ -61,6 +61,12 @@ function SignupScreen(
           value={confirmPassword}
           onChange={handleConfirmPassword}
         />
+        <label htmlFor="">Role:</label>
+        <select name="" id="">
+          <option value="">Student</option>
+          <option value="">School Admin</option>
+          <option value="">NPO Admin</option>
+        </select>
         <button>Submit</button>
       </form>
       <Link to="/login">Back to Login</Link>
