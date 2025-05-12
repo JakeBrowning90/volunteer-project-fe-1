@@ -1,3 +1,30 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+}
+
+body {
+  /* background-color: rgb(234, 234, 234); */
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+header,
+main {
+  background-color: rgb(234, 234, 234);
+}
+h1 {
+  font-size: 2rem;
+}
+
 nav {
   border: 1px solid black;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
