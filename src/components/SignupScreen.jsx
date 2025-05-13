@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router";
 
 // import apiSource
+import { apiSource } from "../apiSource";
 
 function SignupScreen(
   {
@@ -12,7 +13,7 @@ function SignupScreen(
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const [role, setRole] = useState("student");
   const [invalidSignup, setInvalidSignup] = useState(false);
 
   // Functions
@@ -28,8 +29,33 @@ function SignupScreen(
     setConfirmPassword(e.target.value);
   }
 
+  function handleRole(e) {
+    setRole(e.target.value);
+  }
+
   async function submitSignup(e) {
     e.preventDefault();
+    const response = await fetch(apiSource + "user", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        confirmPassword: confirmPassword,
+        role: role,
+      }),
+    });
+    const signupResponse = await response.json();
+    if (Array.isArray(signupResponse.errors)) {
+      setInvalidSignup(true);
+    } else {
+      setInvalidSignup(false);
+      // Redirect to login
+      window.location.href = "/login";
+    }
   }
   // Render
   return (
@@ -61,11 +87,11 @@ function SignupScreen(
           value={confirmPassword}
           onChange={handleConfirmPassword}
         />
-        <label htmlFor="">Role:</label>
-        <select name="" id="">
-          <option value="">Student</option>
-          <option value="">School Admin</option>
-          <option value="">NPO Admin</option>
+        <label htmlFor="roleSelect">Role:</label>
+        <select name="" id="roleSelect" onChange={handleRole}>
+          <option value="student">Student</option>
+          <option value="school_admin">School Admin</option>
+          <option value="org_admin">NPO Admin</option>
         </select>
         <button>Submit</button>
       </form>
