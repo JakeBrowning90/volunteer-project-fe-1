@@ -11,24 +11,9 @@ function HomeScreen(
   // Functions
   const navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
-
   // Render
   return (
     <>
-      <nav>
-        {localStorage.username && (
-          <div>
-            <p>{localStorage.username}</p>
-            <p>{localStorage.role}</p>
-          </div>
-        )}
-        <p>TBA: Account details</p>
-        <a onClick={logout}>Log Out</a>
-      </nav>
       {localStorage.role == "student" && (
         <div>
           <h1>Student Home</h1>
@@ -40,7 +25,8 @@ function HomeScreen(
       {localStorage.role == "school_admin" && (
         <div>
           <h1>School Admin Home</h1>
-
+          <span>Create school:</span>
+          <Link to="/schoolform">Form</Link>
           <p>TBA: List of registered students, logged hours</p>
           <p>TBA: Report generator</p>
         </div>
