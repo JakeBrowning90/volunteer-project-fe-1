@@ -14,6 +14,8 @@ function SignupScreen(
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("student");
+  const [schoolCode, setSchoolCode] = useState("");
+
   const [invalidSignup, setInvalidSignup] = useState(false);
 
   // Functions
@@ -33,8 +35,16 @@ function SignupScreen(
     setRole(e.target.value);
   }
 
+  function handleSchoolCode(e) {
+    setSchoolCode(e.target.value);
+  }
+
   async function submitSignup(e) {
     e.preventDefault();
+    console.log(username, password, confirmPassword, role, schoolCode);
+    if (role !== "student") {
+      setSchoolCode("");
+    }
     const response = await fetch(apiSource + "user", {
       method: "POST",
       mode: "cors",
@@ -46,11 +56,13 @@ function SignupScreen(
         password: password,
         confirmPassword: confirmPassword,
         role: role,
+        schoolCode: schoolCode,
       }),
     });
     const signupResponse = await response.json();
     if (Array.isArray(signupResponse.errors)) {
       setInvalidSignup(true);
+      console.log(signupResponse.errors);
     } else {
       setInvalidSignup(false);
       // Redirect to login
@@ -93,6 +105,18 @@ function SignupScreen(
           <option value="school_admin">School Admin</option>
           <option value="org_admin">NPO Admin</option>
         </select>
+        {role == "student" && (
+          <div>
+            <label htmlFor="schoolCodeInput">School code:</label>
+            <input
+              type="text"
+              name=""
+              id="schoolCodeInput"
+              value={schoolCode}
+              onChange={handleSchoolCode}
+            ></input>
+          </div>
+        )}
         <button>Submit</button>
       </form>
       <Link to="/login">Back to Login</Link>
