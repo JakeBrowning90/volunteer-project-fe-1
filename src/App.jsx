@@ -29,6 +29,8 @@ function App() {
             <div>
               <p>{localStorage.username}</p>
               <p>{localStorage.role}</p>
+              <p>{localStorage.school}</p>
+
             </div>
           )}
           <p>TBA: Account details</p>
