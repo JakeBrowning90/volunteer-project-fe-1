@@ -18,6 +18,12 @@ function HomeScreen(
   const navigate = useNavigate();
 
   useEffect(() => {
+    // TODO: Split dash into 3 components with their own useEffects
+    console.log("Fetching...");
+    if (localStorage.role == "student") {
+    } else if (localStorage.role == "school_admin") {
+    } else if (localStorage.role == "org_admin") {
+    }
     fetch(apiSource + `school/?adminId=${localStorage.id}`, {
       mode: "cors",
       headers: {

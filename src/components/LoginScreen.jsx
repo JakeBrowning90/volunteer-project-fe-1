@@ -40,7 +40,7 @@ function LoginScreen(
       setInvalidLogin(true);
     } else {
       const loginResponse = await response.json();
-      console.log(loginResponse);
+      // console.log(loginResponse);
       // localStorage.setItem("", loginResponse.);
       localStorage.setItem("username", loginResponse.username);
       localStorage.setItem("id", loginResponse.id);
@@ -49,7 +49,7 @@ function LoginScreen(
       localStorage.setItem("token", `Bearer ${loginResponse.token}`);
       setInvalidLogin(false);
       // Redirect to dashboard
-      // window.location.href = "/";
+      window.location.href = "/";
     }
   }
 
