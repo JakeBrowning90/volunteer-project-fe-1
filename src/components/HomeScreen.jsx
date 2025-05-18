@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import DashSchoolAdmin from "./DashSchoolAdmin";
+import DashOrgAdmin from "./DashOrgAdmin";
+import DashStudent from "./DashStudent";
 // import apiSource
 import { apiSource } from "../apiSource";
 
@@ -16,74 +19,12 @@ function HomeScreen(
 
   // Functions
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // TODO: Split dash into 3 components with their own useEffects
-    console.log("Fetching...");
-    if (localStorage.role == "student") {
-    } else if (localStorage.role == "school_admin") {
-    } else if (localStorage.role == "org_admin") {
-    }
-    fetch(apiSource + `school/?adminId=${localStorage.id}`, {
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error("School list fetch error");
-        }
-        return response.json();
-      })
-      .then((response) => setSchoolList(response))
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
-  }, []);
-
   // Render
   return (
     <>
-      {localStorage.role == "student" && (
-        <div>
-          <h1>Student Home</h1>
-
-          <p>TBA: Activity summary, log of hours</p>
-          <p>TBA: Search for orgs and opportunities</p>
-        </div>
-      )}
-      {localStorage.role == "school_admin" && (
-        <div>
-          <h1>School Admin Home</h1>
-          <span>Create school:</span>
-          <Link to="/schoolform">Form</Link>
-          {schoolList.length == 0 ? (
-            <span>No schools registered</span>
-          ) : (
-            <ul>
-              {schoolList.map((school) => {
-                return (
-                  <li key={school.id}>
-                    <span>{school.schoolname}: </span>
-                    <span>{school.code}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-          <p>TBA: List of registered students, logged hours</p>
-          <p>TBA: Report generator</p>
-        </div>
-      )}
-
-      {localStorage.role == "org_admin" && (
-        <div>
-          <h1>NPO Admin Home</h1>
-
-          <p>TBA: List of registered volunteers, contact info</p>
-          <p>TBA: Form to post volunteer opportunities</p>
-        </div>
-      )}
+      {localStorage.role == "student" && <DashStudent />}
+      {localStorage.role == "school_admin" && <DashSchoolAdmin />}
+      {localStorage.role == "org_admin" && <DashOrgAdmin />}
     </>
   );
 }
