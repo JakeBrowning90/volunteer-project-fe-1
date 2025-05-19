@@ -8,6 +8,7 @@ import LoginScreen from "./components/LoginScreen";
 import SignupScreen from "./components/SignupScreen";
 import HomeScreen from "./components/HomeScreen";
 import SchoolForm from "./components/SchoolForm";
+import NPOForm from "./components/NPOForm";
 // User info
 // Find Orgs
 // Sign up for shift
@@ -30,7 +31,6 @@ function App() {
               <p>{localStorage.username}</p>
               <p>{localStorage.role}</p>
               <p>{localStorage.school}</p>
-
             </div>
           )}
           <p>TBA: Account details</p>
@@ -47,6 +47,7 @@ function App() {
           <Route path="signup" element={<SignupScreen />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="/schoolform" element={<SchoolForm />} />
+          <Route path="/npoform" element={<NPOForm />} />
         </Routes>
       </main>
     </>

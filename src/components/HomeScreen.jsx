@@ -13,9 +13,6 @@ function HomeScreen(
   }
 ) {
   // State declarations
-  const [schoolList, setSchoolList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   // Functions
   const navigate = useNavigate();

@@ -35,7 +35,8 @@ function DashOrgAdmin(
   return (
     <div>
       <h1>NPO Admin Home</h1>
-
+      <span>Create NPO:</span>
+      <Link to="/npoform">Form</Link>
       <p>TBA: List of registered volunteers, contact info</p>
       <p>TBA: Form to post volunteer opportunities</p>
     </div>
