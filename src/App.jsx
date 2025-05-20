@@ -9,6 +9,7 @@ import SignupScreen from "./components/SignupScreen";
 import HomeScreen from "./components/HomeScreen";
 import SchoolForm from "./components/SchoolForm";
 import NPOForm from "./components/NPOForm";
+import OpportunityForm from "./components/OpportunityForm";
 // User info
 // Find Orgs
 // Sign up for shift
@@ -48,6 +49,7 @@ function App() {
           <Route path="/" element={<HomeScreen />} />
           <Route path="/schoolform" element={<SchoolForm />} />
           <Route path="/npoform" element={<NPOForm />} />
+          <Route path="/oppform" element={<OpportunityForm />} />
         </Routes>
       </main>
     </>
