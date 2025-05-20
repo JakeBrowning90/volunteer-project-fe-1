@@ -9,27 +9,27 @@ function DashOrgAdmin(
   }
 ) {
   // State declarations
-  // const [schoolList, setSchoolList] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [npoList, setNpoList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   // Functions
-  // useEffect(() => {
-  //   fetch(apiSource + `school/?adminId=${localStorage.id}`, {
-  //     mode: "cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       if (response.status >= 400) {
-  //         throw new Error("School list fetch error");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((response) => setSchoolList(response))
-  //     .catch((error) => setError(error))
-  //     .finally(() => setLoading(false));
-  // }, []);
+  useEffect(() => {
+    fetch(apiSource + `npo/?adminId=${localStorage.id}`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("School list fetch error");
+        }
+        return response.json();
+      })
+      .then((response) => setNpoList(response))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }, []);
 
   // Render
   return (
@@ -37,6 +37,19 @@ function DashOrgAdmin(
       <h1>NPO Admin Home</h1>
       <span>Create NPO:</span>
       <Link to="/npoform">Form</Link>
+      {npoList.length == 0 ? (
+        <span>No NPOs registered</span>
+      ) : (
+        <ul>
+          {npoList.map((npo) => {
+            return (
+              <li key={npo.id}>
+                <span>{npo.nponame}</span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
       <p>TBA: List of registered volunteers, contact info</p>
       <p>TBA: Form to post volunteer opportunities</p>
     </div>
