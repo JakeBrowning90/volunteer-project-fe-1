@@ -43,6 +43,7 @@ function SchoolForm(
   // Render
   return (
     <div>
+      <Link to="/">Back to Home</Link>
       <h1>Create School</h1>
       {invalidSchool && <p>Invalid school</p>}
       <form onSubmit={submitSchool}>

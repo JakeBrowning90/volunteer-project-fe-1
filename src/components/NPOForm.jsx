@@ -43,6 +43,8 @@ function NPOForm(
   // Render
   return (
     <div>
+      <Link to="/">Back to Home</Link>
+
       <h1>Create NPO</h1>
       {invalidNpo && <p>Invalid NPO</p>}
       <form onSubmit={submitNPO}>

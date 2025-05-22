@@ -44,7 +44,8 @@ function DashOrgAdmin(
           {npoList.map((npo) => {
             return (
               <li key={npo.id}>
-                <span>{npo.nponame}</span>
+                {/* <span>{npo.nponame}</span> */}
+                <Link to={`/npo/${npo.id}`}>{npo.nponame}</Link>
               </li>
             );
           })}

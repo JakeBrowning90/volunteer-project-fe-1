@@ -54,7 +54,7 @@ function OpportunityForm(
   // Render
   return (
     <div>
-            <Link to="/">Back to Home</Link>
+      <Link to="/">Back to Home</Link>
 
       <h1>Create Volunteering Opportunity</h1>
       {invalidSubmission && <span>Invalid event</span>}
