@@ -12,6 +12,7 @@ function DashOrgAdmin(
   const [npoList, setNpoList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
   // Functions
   useEffect(() => {
     fetch(apiSource + `npo/?adminId=${localStorage.id}`, {
@@ -22,7 +23,7 @@ function DashOrgAdmin(
     })
       .then((response) => {
         if (response.status >= 400) {
-          throw new Error("School list fetch error");
+          throw new Error("NPO list fetch error");
         }
         return response.json();
       })
