@@ -55,26 +55,26 @@ function OpportunityForm(
 
   async function submitOpportunity(e) {
     e.preventDefault();
-    console.log(npo, title, description);
-    // const response = await fetch(apiSource + "opportunity", {
-    //   method: "POST",
-    //   mode: "cors",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     nponame: npoName,
-    //     admin: localStorage.id,
-    //   }),
-    // });
-    // const npoResponse = await response.json();
-    // if (Array.isArray(npoResponse.errors)) {
-    //   setInvalidNpo(true);
-    // } else {
-    //   setInvalidNpo(false);
-    //   // Redirect to login
-    //   window.location.href = "/";
-    // }
+    const response = await fetch(apiSource + "opportunity", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        description: description,
+        npo: npo,
+      }),
+    });
+    const npoResponse = await response.json();
+    if (Array.isArray(npoResponse.errors)) {
+      setInvalidSubmission(true);
+    } else {
+      setInvalidSubmission(false);
+      // Redirect to login
+      window.location.href = "/";
+    }
   }
 
   // Render
@@ -88,9 +88,7 @@ function OpportunityForm(
         <label htmlFor="npoSelect">NPO:</label>
 
         <select id="npoSelect" onChange={handleNpo}>
-          <option value="">
-            -Select an organization-
-          </option>
+          <option value="">-Select an organization-</option>
           {npoList.map((npo) => {
             return (
               <option key={npo.id} value={npo.id}>
