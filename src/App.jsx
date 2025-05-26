@@ -8,6 +8,7 @@ import LoginScreen from "./components/LoginScreen";
 import SignupScreen from "./components/SignupScreen";
 import HomeScreen from "./components/HomeScreen";
 import SchoolForm from "./components/SchoolForm";
+import SchoolDetail from "./components/SchoolDetail";
 import NPOForm from "./components/NPOForm";
 import NPODetail from "./components/NPODetail";
 import OpportunityForm from "./components/OpportunityForm";
@@ -50,6 +51,7 @@ function App() {
           <Route path="/" element={<HomeScreen />} />
 
           <Route path="/schoolform" element={<SchoolForm />} />
+          <Route path="/school/:schoolId" element={<SchoolDetail />} />
 
           <Route path="/npoform" element={<NPOForm />} />
           <Route path="/npo/:npoId" element={<NPODetail />} />

@@ -43,9 +43,10 @@ function DashSchoolAdmin(
         <ul>
           {schoolList.map((school) => {
             return (
+              
               <li key={school.id}>
-                <span>{school.schoolname}: </span>
-                <span>{school.code}</span>
+                <Link to={`/school/${school.id}`}>{school.schoolname}</Link>
+                {/* <span>{school.code}</span> */}
               </li>
             );
           })}
