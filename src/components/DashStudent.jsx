@@ -9,35 +9,51 @@ function DashStudent(
   }
 ) {
   // State declarations
-  // const [schoolList, setSchoolList] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [opportunities, setOpportunities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   // Functions
-  // useEffect(() => {
-  //   fetch(apiSource + `school/?adminId=${localStorage.id}`, {
-  //     mode: "cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       if (response.status >= 400) {
-  //         throw new Error("School list fetch error");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((response) => setSchoolList(response))
-  //     .catch((error) => setError(error))
-  //     .finally(() => setLoading(false));
-  // }, []);
+  useEffect(() => {
+    fetch(apiSource + `opportunity`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("Opportunity list fetch error");
+        }
+        return response.json();
+      })
+      .then((response) => setOpportunities(response))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }, []);
 
   // Render
+  if (loading) return <p>Loading volunteer opportunities...</p>;
+  if (error) return <p>Network error, please try again later.</p>;
   return (
     <div>
       <h1>Student Home</h1>
 
       <p>TBA: Activity summary, log of hours</p>
       <p>TBA: Search for orgs and opportunities</p>
+      {opportunities.length == 0 ? (
+        <span>No opportunities found</span>
+      ) : (
+        <ul>
+          {opportunities.map((opportunity) => {
+            return (
+              <li key={opportunity.id}>
+                <span>{opportunity.title}: </span>
+                <span>{opportunity.description}</span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
