@@ -48,7 +48,8 @@ function DashStudent(
             return (
               <li key={opportunity.id}>
                 <span>{opportunity.title}: </span>
-                <span>{opportunity.description}</span>
+                <span>{opportunity.npo[0].nponame}</span>
+
               </li>
             );
           })}

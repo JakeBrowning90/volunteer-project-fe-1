@@ -12,7 +12,7 @@ function DashOrgAdmin(
   const [npoList, setNpoList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   // Functions
   useEffect(() => {
     fetch(apiSource + `npo/?adminId=${localStorage.id}`, {
@@ -52,7 +52,7 @@ function DashOrgAdmin(
           })}
         </ul>
       )}
-      <p>TBA: Form to post volunteer opportunities</p>
+      {/* <span>TBA: Form to post volunteer opportunities</span> */}
       <Link to="/oppform">Create Volunteer Opportunity</Link>
 
       <p>TBA: List of registered volunteers, contact info</p>
