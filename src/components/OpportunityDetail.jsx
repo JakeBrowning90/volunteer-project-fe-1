@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import apiSource
+import { apiSource } from "../apiSource";
+import { Routes, Route, Link, useNavigate } from "react-router";
 
-function ComponentName(
+function OpportunityDetail(
   {
     // Props
   }
@@ -28,10 +30,18 @@ function ComponentName(
   //       .catch((error) => setError(error))
   //       .finally(() => setLoading(false));
   //   }, []);
+
   // Render
   //   if (loading) return <p>Loading...</p>;
   //   if (error) return <p>Network error, please try again later.</p>;
-  //   return <div></div>;
+  return (
+    <div>
+      {/* Conditional based on user being student or org admin */}
+      <Link to="/">Back to Home</Link>
+
+      <h1>Opportunity Detail</h1>
+    </div>
+  );
 }
 
-// export default ComponentName
+export default OpportunityDetail;

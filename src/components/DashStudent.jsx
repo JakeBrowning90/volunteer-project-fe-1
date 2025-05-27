@@ -39,18 +39,25 @@ function DashStudent(
       <h1>Student Home</h1>
 
       <p>TBA: Activity summary, log of hours</p>
-      <p>TBA: Search for orgs and opportunities</p>
+      <p>TBA: Form to search for orgs and opportunities</p>
       {opportunities.length == 0 ? (
         <span>No opportunities found</span>
       ) : (
         <ul className="oppCardBase">
           {opportunities.map((opportunity) => {
             return (
-              <li className="oppCard" key={opportunity.id}>
-                <img  alt="thumbnail" />
+              // <li className="oppCard" key={opportunity.id}>
+              <a
+                href={`opp/${opportunity.id}`}
+                className="oppCard"
+                key={opportunity.id}
+              >
+                <img alt="thumbnail" />
                 <span className="oppCardTitle">{opportunity.title}</span>
+
                 <span>{opportunity.npo[0].nponame}</span>
-              </li>
+              </a>
+              // </li>
             );
           })}
         </ul>
