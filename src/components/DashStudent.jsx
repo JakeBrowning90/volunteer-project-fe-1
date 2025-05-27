@@ -43,13 +43,13 @@ function DashStudent(
       {opportunities.length == 0 ? (
         <span>No opportunities found</span>
       ) : (
-        <ul>
+        <ul className="oppCardBase">
           {opportunities.map((opportunity) => {
             return (
-              <li key={opportunity.id}>
-                <span>{opportunity.title}: </span>
+              <li className="oppCard" key={opportunity.id}>
+                <img  alt="thumbnail" />
+                <span className="oppCardTitle">{opportunity.title}</span>
                 <span>{opportunity.npo[0].nponame}</span>
-
               </li>
             );
           })}

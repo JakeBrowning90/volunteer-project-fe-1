@@ -31,3 +31,22 @@ form {
   display: flex;
   flex-direction: column;
 }
+.oppCardBase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: rgba(0, 0, 0, 0.894);
+}
+.oppCard {
+  margin: 5px;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border: 1px solid rgb(189, 189, 189);
+}
+.oppCard > img {
+  height: 100px;
+}
+.oppCardTitle {
+  font-weight: bold;
+}
