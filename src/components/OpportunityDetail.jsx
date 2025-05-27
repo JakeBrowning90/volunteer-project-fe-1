@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import apiSource
 import { apiSource } from "../apiSource";
-import { Routes, Route, Link, useNavigate } from "react-router";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router";
 
 function OpportunityDetail(
   {
@@ -9,37 +9,45 @@ function OpportunityDetail(
   }
 ) {
   // State declarations
-  //   const [content, setContent] = useState([]);
-  //   const [loading, setLoading] = useState(true);
-  //   const [error, setError] = useState(null);
+  const [opp, setOpp] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   // Functions
-  //   useEffect(() => {
-  //     fetch(apiSource + `opportunity`, {
-  //       mode: "cors",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((response) => {
-  //         if (response.status >= 400) {
-  //           throw new Error("Fetch error");
-  //         }
-  //         return response.json();
-  //       })
-  //       .then((response) => setContent(response))
-  //       .catch((error) => setError(error))
-  //       .finally(() => setLoading(false));
-  //   }, []);
+  const { oppId } = useParams();
+
+  useEffect(() => {
+    fetch(apiSource + `opportunity/${oppId}`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("Fetch error");
+        }
+        return response.json();
+      })
+      .then((response) => setOpp(response))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }, []);
 
   // Render
-  //   if (loading) return <p>Loading...</p>;
-  //   if (error) return <p>Network error, please try again later.</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Network error, please try again later.</p>;
   return (
     <div>
       {/* Conditional based on user being student or org admin */}
       <Link to="/">Back to Home</Link>
 
       <h1>Opportunity Detail</h1>
+      <h2>{opp.title}</h2>
+      <h2>{opp.npo[0].nponame}</h2>
+
+      <p>{opp.description}</p>
+      <span>TBA: registration form or list of volunteers</span>
     </div>
   );
 }
