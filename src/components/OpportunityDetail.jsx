@@ -40,14 +40,22 @@ function OpportunityDetail(
   return (
     <div>
       {/* Conditional based on user being student or org admin */}
-      <Link to="/">Back to Home</Link>
+      {localStorage.role == "student" && <Link to="/">Back to Home</Link>}
+      {localStorage.role == "org_admin" && (
+        <Link to={`../npo/${opp.npo[0].id}`}>Back to NPO</Link>
+      )}
 
       <h1>Opportunity Detail</h1>
       <h2>{opp.title}</h2>
       <h2>{opp.npo[0].nponame}</h2>
-
       <p>{opp.description}</p>
-      <span>TBA: registration form or list of volunteers</span>
+
+      {localStorage.role == "student" && (
+        <span>TBA student user: registration form</span>
+      )}
+      {localStorage.role == "org_admin" && (
+        <span>TBA org admin: list of volunteers</span>
+      )}
     </div>
   );
 }

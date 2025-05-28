@@ -49,13 +49,23 @@ function NPODetail(
       {npo.opportunity.length == 0 ? (
         <span>No opportunities registered</span>
       ) : (
-        <ul>
+        <ul className="oppCardBase">
           {npo.opportunity.map((opportunity) => {
             return (
-              <li key={opportunity.id}>
-                <span>{opportunity.title}: </span>
-                <span>{opportunity.description}</span>
-              </li>
+              // <li key={opportunity.id}>
+              //   <span>{opportunity.title}: </span>
+              //   <span>{opportunity.description}</span>
+              // </li>
+              <a
+                href={`../opp/${opportunity.id}`}
+                className="oppCard"
+                key={opportunity.id}
+              >
+                <img alt="thumbnail" />
+                <span className="oppCardTitle">{opportunity.title}</span>
+
+                {/* <span>{opportunity.npo[0].nponame}</span> */}
+              </a>
             );
           })}
         </ul>
