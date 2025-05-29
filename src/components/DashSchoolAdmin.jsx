@@ -52,7 +52,7 @@ function DashSchoolAdmin(
           })}
         </ul>
       )}
-      <p>TBA: List of registered students, logged hours</p>
+      <p>TBA: List of ALL registered students, logged hours?</p>
       <p>TBA: Report generator</p>
     </div>
   );

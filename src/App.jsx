@@ -13,6 +13,7 @@ import NPOForm from "./components/NPOForm";
 import NPODetail from "./components/NPODetail";
 import OpportunityForm from "./components/OpportunityForm";
 import OpportunityDetail from "./components/OpportunityDetail";
+import UserDetail from "./components/UserDetail";
 // User info
 // Find Orgs
 // Sign up for shift
@@ -53,6 +54,7 @@ function App() {
 
           <Route path="/schoolform" element={<SchoolForm />} />
           <Route path="/school/:schoolId" element={<SchoolDetail />} />
+          <Route path="/school/:schoolId/user/:userId" element={<UserDetail />} />
 
           <Route path="/npoform" element={<NPOForm />} />
           <Route path="/npo/:npoId" element={<NPODetail />} />

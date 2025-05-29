@@ -47,6 +47,17 @@ form {
 .oppCard > img {
   height: 100px;
 }
-.oppCardTitle {
+.oppCardTitle, .userListTitle {
   font-weight: bold;
+}
+.userList {
+  background-color: rgba(0, 0, 0, 0.894);
+}
+.userListItem {
+  margin: 5px;
+  padding: 10px;
+  gap: 5px;
+  display: flex;
+  color: white;
+  border: 1px solid rgb(189, 189, 189);
 }

@@ -40,7 +40,7 @@ function SchoolDetail(
   if (error) return <p>Network error, please try again later.</p>;
   return (
     <div>
-      <Link to="/">Back to Home</Link>
+      <Link to="/">Back to Dashboard</Link>
 
       <h1>School Detail</h1>
       <h2>{school.schoolname}</h2>
@@ -49,13 +49,22 @@ function SchoolDetail(
       {school.user.length == 0 ? (
         <span>No users registered</span>
       ) : (
-        <ul>
+        <ul className="userList">
           {school.user.map((user) => {
             return (
-              <li key={user.id}>
-                <span>{user.username}: </span>
-                <span>{user.role}</span>
-              </li>
+              <a
+              href={`${school.id}/user/${user.id}`}
+              className="userListItem"
+              key={user.id}
+            >
+              {/* <li key={user.id} className="userListItem"> */}
+                <span className="userListTitle">{user.username}</span>
+                <span> | {user.role}</span>
+                <span>TBA: Link to detail w/ hour breakdown</span>
+
+                <span>TBA: Hour total</span>
+              {/* </li> */}
+              </a>
             );
           })}
         </ul>

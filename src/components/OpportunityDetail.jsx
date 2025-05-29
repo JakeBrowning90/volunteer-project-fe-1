@@ -50,8 +50,15 @@ function OpportunityDetail(
       <h2>{opp.npo[0].nponame}</h2>
       <p>{opp.description}</p>
 
-      {localStorage.role == "student" && (
+      {localStorage.role == "student" && (<>
         <span>TBA student user: registration form</span>
+        <form action="">
+          <h2>Join Volunteer List for this Role?</h2>
+          <button>
+            Register
+          </button>
+        </form>
+        </>
       )}
       {localStorage.role == "org_admin" && (
         <span>TBA org admin: list of volunteers</span>
