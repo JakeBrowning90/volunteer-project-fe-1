@@ -33,6 +33,8 @@ function DashOrgAdmin(
   }, []);
 
   // Render
+  if (loading) return <p>Loading NPOs...</p>;
+  if (error) return <p>Network error, please try again later.</p>;
   return (
     <div>
       <h1>NPO Admin Home</h1>
@@ -41,10 +43,10 @@ function DashOrgAdmin(
       {npoList.length == 0 ? (
         <span>No NPOs registered</span>
       ) : (
-        <ul>
+        <ul className="npoList">
           {npoList.map((npo) => {
             return (
-              <li key={npo.id}>
+              <li key={npo.id} className="npoListItem">
                 {/* <span>{npo.nponame}</span> */}
                 <Link to={`/npo/${npo.id}`}>{npo.nponame}</Link>
               </li>

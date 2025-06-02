@@ -1,7 +1,19 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
+  --color-body-dark: black;
+  --color-text-white: white;
+  --color-text-grey: rgb(219, 219, 219);
+  --color-header-green: rgb(72, 141, 72);
+  --color-header-lightgreen: rgb(70, 165, 70);
 }
 
+* {
+  color: var(--color-text-white)
+}
+
+a {
+  color: var(--color-text-white);
+}
 html,
 body {
 }
@@ -12,10 +24,14 @@ body {
   max-width: 800px;
 }
 
-header,
-main {
-  background-color: rgb(234, 234, 234);
+header {
+  background-color: var(--color-header-green);
 }
+
+main {
+  background-color: var(--color-body-dark);;
+}
+
 h1 {
   font-size: 2rem;
 }
@@ -34,7 +50,6 @@ form {
 .oppCardBase {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background-color: rgba(0, 0, 0, 0.894);
 }
 .oppCard {
   margin: 5px;
@@ -47,17 +62,18 @@ form {
 .oppCard > img {
   height: 100px;
 }
-.oppCardTitle, .userListTitle {
+.oppCardTitle,
+.userListTitle {
   font-weight: bold;
 }
-.userList {
-  background-color: rgba(0, 0, 0, 0.894);
+.userList,
+.npoList {
 }
-.userListItem {
+.userListItem,
+.npoListItem {
   margin: 5px;
   padding: 10px;
   gap: 5px;
   display: flex;
-  color: white;
   border: 1px solid rgb(189, 189, 189);
 }
