@@ -40,11 +40,11 @@ function DashSchoolAdmin(
       {schoolList.length == 0 ? (
         <span>No schools registered</span>
       ) : (
-        <ul>
+        <ul className="schoolList">
           {schoolList.map((school) => {
             return (
               
-              <li key={school.id}>
+              <li key={school.id} className="schoolListItem">
                 <Link to={`/school/${school.id}`}>{school.schoolname}</Link>
                 {/* <span>{school.code}</span> */}
               </li>

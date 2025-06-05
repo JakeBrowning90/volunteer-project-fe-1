@@ -54,8 +54,6 @@ function DashOrgAdmin(
           })}
         </ul>
       )}
-      
-      <Link to="/oppform">Create Volunteer Opportunity</Link>
 
       <p>TBA: List of registered volunteers, contact info</p>
     </div>

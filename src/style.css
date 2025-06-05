@@ -20,7 +20,11 @@ button {
   font-weight: bold;
 }
 
-input {color: var(--color-body-dark)}
+input,
+select,
+option {
+  color: var(--color-body-dark);
+}
 
 html,
 body {
@@ -81,9 +85,11 @@ form {
   font-weight: bold;
 }
 .userList,
+.schoolList,
 .npoList {
 }
 .userListItem,
+.schoolListItem,
 .npoListItem {
   margin: 5px;
   padding: 10px;
