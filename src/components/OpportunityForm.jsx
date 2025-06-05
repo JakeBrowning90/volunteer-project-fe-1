@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router";
 
 // import apiSource
 import { apiSource } from "../apiSource";
@@ -22,9 +22,27 @@ function OpportunityForm(
   // function handleNpoName(e) {
   //   setNpoName(e.target.value);
   // }
+  const { npoId } = useParams();
 
+  // useEffect(() => {
+  //   fetch(apiSource + `npo/?adminId=${localStorage.id}`, {
+  //     mode: "cors",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => {
+  //       if (response.status >= 400) {
+  //         throw new Error("NPO list fetch error");
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((response) => setNpoList(response))
+  //     .catch((error) => setError(error))
+  //     .finally(() => setLoading(false));
+  // }, []);
   useEffect(() => {
-    fetch(apiSource + `npo/?adminId=${localStorage.id}`, {
+    fetch(apiSource + `npo/${npoId}`, {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -32,11 +50,11 @@ function OpportunityForm(
     })
       .then((response) => {
         if (response.status >= 400) {
-          throw new Error("NPO list fetch error");
+          throw new Error("NPO fetch error");
         }
         return response.json();
       })
-      .then((response) => setNpoList(response))
+      .then((response) => setNpo(response))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, []);
@@ -64,7 +82,7 @@ function OpportunityForm(
       body: JSON.stringify({
         title: title,
         description: description,
-        npo: npo,
+        npo: npo.id,
       }),
     });
     const npoResponse = await response.json();
@@ -72,20 +90,20 @@ function OpportunityForm(
       setInvalidSubmission(true);
     } else {
       setInvalidSubmission(false);
-      // Redirect to login
-      window.location.href = "/";
+      // Redirect to NPO overview
+      window.location.href = `/npo/${npoId}`;
     }
   }
 
   // Render
   return (
     <div>
-      <Link to="/">Back to Home</Link>
-
+      <Link to={`../npo/${npo.id}`}>Back to NPO Overview</Link>
+      <h1>{npo.nponame}</h1>
       <h1>Create Volunteering Opportunity</h1>
       {invalidSubmission && <span>Invalid event</span>}
       <form onSubmit={submitOpportunity}>
-        <label htmlFor="npoSelect">NPO:</label>
+        {/* <label htmlFor="npoSelect">NPO:</label>
 
         <select id="npoSelect" onChange={handleNpo}>
           <option value="">-Select an organization-</option>
@@ -96,7 +114,7 @@ function OpportunityForm(
               </option>
             );
           })}
-        </select>
+        </select> */}
         <label htmlFor="title">Title:</label>
         <input type="text" id="title" value={title} onChange={handleTitle} />
         <label htmlFor="description">Description:</label>

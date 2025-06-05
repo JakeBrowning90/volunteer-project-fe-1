@@ -8,12 +8,20 @@
 }
 
 * {
-  color: var(--color-text-white)
+  color: var(--color-text-white);
 }
 
 a {
   color: var(--color-text-white);
 }
+
+button {
+  color: var(--color-header-green);
+  font-weight: bold;
+}
+
+input {color: var(--color-body-dark)}
+
 html,
 body {
 }
@@ -24,12 +32,17 @@ body {
   max-width: 800px;
 }
 
+header,
+main {
+  padding: 10px;
+}
+
 header {
   background-color: var(--color-header-green);
 }
 
 main {
-  background-color: var(--color-body-dark);;
+  background-color: var(--color-body-dark);
 }
 
 h1 {
@@ -46,6 +59,7 @@ nav {
 form {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 .oppCardBase {
   display: grid;

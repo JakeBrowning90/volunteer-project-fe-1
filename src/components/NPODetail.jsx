@@ -45,6 +45,7 @@ function NPODetail(
 
       <h1>NPO Detail</h1>
       <h2>{npo.nponame}</h2>
+      <Link to={`../npo/${npoId}/oppform`}>Create Volunteer Opportunity</Link>
 
       {npo.opportunity.length == 0 ? (
         <span>No opportunities registered</span>

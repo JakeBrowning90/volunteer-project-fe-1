@@ -58,7 +58,9 @@ function App() {
 
           <Route path="/npoform" element={<NPOForm />} />
           <Route path="/npo/:npoId" element={<NPODetail />} />
-          <Route path="/oppform" element={<OpportunityForm />} />
+          <Route path="/npo/:npoId/oppform" element={<OpportunityForm />} />
+
+          {/* <Route path="/oppform" element={<OpportunityForm />} /> */}
           <Route path="/opp/:oppId" element={<OpportunityDetail />} />
         </Routes>
       </main>
