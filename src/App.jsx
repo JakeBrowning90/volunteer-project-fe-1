@@ -7,6 +7,7 @@ import { Routes, Route, Link, useNavigate } from "react-router";
 import LoginScreen from "./components/LoginScreen";
 import SignupScreen from "./components/SignupScreen";
 import HomeScreen from "./components/HomeScreen";
+import UserProfile from "./components/UserProfile" 
 import SchoolForm from "./components/SchoolForm";
 import SchoolDetail from "./components/SchoolDetail";
 import NPOForm from "./components/NPOForm";
@@ -39,6 +40,7 @@ function App() {
             </div>
           )}
           <p>TBA: Account details</p>
+          <Link to={`/user/${localStorage.id}`}>Profile</Link>
           <a onClick={logout}>Log Out</a>
         </nav>
       </header>
@@ -51,6 +53,7 @@ function App() {
           <Route path="login" element={<LoginScreen />} />
           <Route path="signup" element={<SignupScreen />} />
           <Route path="/" element={<HomeScreen />} />
+          <Route path="/user/:userId" element={<UserProfile />} />
 
           <Route path="/schoolform" element={<SchoolForm />} />
           <Route path="/school/:schoolId" element={<SchoolDetail />} />
