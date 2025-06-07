@@ -7,7 +7,7 @@ import { Routes, Route, Link, useNavigate } from "react-router";
 import LoginScreen from "./components/LoginScreen";
 import SignupScreen from "./components/SignupScreen";
 import HomeScreen from "./components/HomeScreen";
-import UserProfile from "./components/UserProfile" 
+import UserProfile from "./components/UserProfile";
 import SchoolForm from "./components/SchoolForm";
 import SchoolDetail from "./components/SchoolDetail";
 import NPOForm from "./components/NPOForm";
@@ -32,16 +32,19 @@ function App() {
     <>
       <header>
         <nav>
-          {localStorage.username && (
-            <div>
-              <p>{localStorage.username}</p>
-              <p>{localStorage.role}</p>
-              <p>{localStorage.school}</p>
-            </div>
+          {localStorage.username ? (
+            <>
+              <Link to={`/user/${localStorage.id}`}>
+                {localStorage.username}
+              </Link>
+              <a onClick={logout}>Log Out</a>
+            </>
+          ) : (
+            <>
+              <Link to={`/signup`}>Sign Up</Link>
+              <Link to={`/login`}>Log In</Link>
+            </>
           )}
-          <p>TBA: Account details</p>
-          <Link to={`/user/${localStorage.id}`}>Profile</Link>
-          <a onClick={logout}>Log Out</a>
         </nav>
       </header>
       <main>
@@ -57,7 +60,10 @@ function App() {
 
           <Route path="/schoolform" element={<SchoolForm />} />
           <Route path="/school/:schoolId" element={<SchoolDetail />} />
-          <Route path="/school/:schoolId/user/:userId" element={<UserDetail />} />
+          <Route
+            path="/school/:schoolId/user/:userId"
+            element={<UserDetail />}
+          />
 
           <Route path="/npoform" element={<NPOForm />} />
           <Route path="/npo/:npoId" element={<NPODetail />} />
