@@ -35,6 +35,15 @@ function OpportunityDetail(
       .finally(() => setLoading(false));
   }, []);
 
+  // Check if current user is already listed as a volunteer for this opp
+  const isRegistered = () => {
+    if (opp.volunteer.some((e) => e.id === parseInt(localStorage.id))) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   async function submitRegistration(e) {
     e.preventDefault();
     console.log("User: " + localStorage.id, "Opp: " + oppId);
@@ -77,11 +86,19 @@ function OpportunityDetail(
       {localStorage.role == "student" && (
         <>
           <span>TBA student user: registration form</span>
-          <form onSubmit={submitRegistration}>
-            <h2>Join Volunteer List for this Role?</h2>
-            {regError && <p>An error has occurred, please try again later</p>}
-            <button>Register</button>
-          </form>
+          {isRegistered() ? (
+            <>
+              <h2>Registered!</h2>
+              <h2>TBA: Timesheet option</h2>
+              <h2>TBA: Unregister option</h2>
+            </>
+          ) : (
+            <form onSubmit={submitRegistration}>
+              {/* <h2>Join Volunteer List for this Role?</h2> */}
+              {regError && <p>An error has occurred, please try again later</p>}
+              <button>Register</button>
+            </form>
+          )}
         </>
       )}
       {localStorage.role == "org_admin" && (
