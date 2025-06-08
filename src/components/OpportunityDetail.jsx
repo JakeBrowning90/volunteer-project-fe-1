@@ -14,7 +14,6 @@ function OpportunityDetail(
   const [error, setError] = useState(null);
   const [regError, setRegError] = useState(false);
 
-
   // Functions
   const { oppId } = useParams();
 
@@ -86,7 +85,25 @@ function OpportunityDetail(
         </>
       )}
       {localStorage.role == "org_admin" && (
-        <span>TBA org admin: list of volunteers</span>
+        <>
+          {opp.volunteer == 0 ? (
+            <span>No Volunteers registered</span>
+          ) : (
+            <>
+              <span>List of Volunteers:</span>
+              <ul>
+                {opp.volunteer.map((volunteer) => {
+                  return (
+                    <li key={volunteer.id} className="userListItem">
+                      <span>{volunteer.username}</span>
+                      <span> - TBA: contact info</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          )}
+        </>
       )}
     </div>
   );
