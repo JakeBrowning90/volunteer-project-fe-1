@@ -9,6 +9,7 @@ function DashStudent(
   }
 ) {
   // State declarations
+  const [registered, setRegistered] = useState([]);
   const [opportunities, setOpportunities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -31,6 +32,12 @@ function DashStudent(
       .finally(() => setLoading(false));
   }, []);
 
+  const getRegistered = (oppList) => {
+    return oppList.filter(opp => opp.id)
+  };
+
+  const getUnregistered = () => {};
+
   // Render
   if (loading) return <p>Loading volunteer opportunities...</p>;
   if (error) return <p>Network error, please try again later.</p>;
@@ -40,6 +47,31 @@ function DashStudent(
 
       <p>TBA: Activity summary, log of hours</p>
       <p>TBA: Form to search for orgs and opportunities</p>
+
+      <p>TBA: currently enrolled opps</p>
+      {registered.length == 0 ? (
+        <span>No registrations found</span>
+      ) : (
+        <ul className="oppCardBase">
+          {registered.map((registered) => {
+            return (
+              // <li className="oppCard" key={opportunity.id}>
+              <a
+                href={`opp/${registered.id}`}
+                className="oppCard"
+                key={registered.id}
+              >
+                <img alt="thumbnail" />
+                <span className="oppCardTitle">{registered.title}</span>
+
+                <span>{registered.npo[0].nponame}</span>
+              </a>
+              // </li>
+            );
+          })}
+        </ul>
+      )}
+
       {opportunities.length == 0 ? (
         <span>No opportunities found</span>
       ) : (
