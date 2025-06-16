@@ -37,7 +37,6 @@ function App() {
               <Link to={`/user/${localStorage.id}`}>
                 {localStorage.username}
               </Link>
-              <span>{localStorage.opportunity}</span>
               <a onClick={logout}>Log Out</a>
             </>
           ) : (

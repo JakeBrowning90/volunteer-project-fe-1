@@ -45,7 +45,10 @@ function LoginScreen(
       localStorage.setItem("username", loginResponse.username);
       localStorage.setItem("id", loginResponse.id);
       localStorage.setItem("role", loginResponse.role);
-      localStorage.setItem("opportunity", loginResponse.opportunity);
+      localStorage.setItem(
+        "opportunity",
+        JSON.stringify(loginResponse.opportunity)
+      );
 
       localStorage.setItem("token", `Bearer ${loginResponse.token}`);
       setInvalidLogin(false);

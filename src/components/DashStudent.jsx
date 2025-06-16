@@ -27,14 +27,23 @@ function DashStudent(
         }
         return response.json();
       })
-      .then((response) => setOpportunities(response))
+      .then((response) => {
+        setOpportunities(response);
+        getRegistered(response);
+      })
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, []);
 
-  const getRegistered = (oppList) => {
-    return oppList.filter(opp => opp.id)
-  };
+  function getRegistered(opportunities) {
+    console.log(opportunities);
+    const userOpps = JSON.parse(localStorage.opportunity);
+    let filtered = opportunities.filter((opp) =>
+      userOpps.some((item) => item.id === opp.id)
+    );
+    console.log(filtered);
+    setRegistered(filtered);
+  }
 
   const getUnregistered = () => {};
 
