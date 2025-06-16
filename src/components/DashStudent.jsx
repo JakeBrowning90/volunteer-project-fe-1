@@ -10,6 +10,7 @@ function DashStudent(
 ) {
   // State declarations
   const [registered, setRegistered] = useState([]);
+  const [unregistered, setUnregistered] = useState([]);
   const [opportunities, setOpportunities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,13 +31,13 @@ function DashStudent(
       .then((response) => {
         setOpportunities(response);
         getRegistered(response);
+        getUnregistered(response);
       })
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, []);
 
   function getRegistered(opportunities) {
-    console.log(opportunities);
     const userOpps = JSON.parse(localStorage.opportunity);
     let filtered = opportunities.filter((opp) =>
       userOpps.some((item) => item.id === opp.id)
@@ -45,7 +46,14 @@ function DashStudent(
     setRegistered(filtered);
   }
 
-  const getUnregistered = () => {};
+  const getUnregistered = (opportunities) => {
+    const userOpps = JSON.parse(localStorage.opportunity);
+    let filtered = opportunities.filter((opp) =>
+      !userOpps.some((item) => item.id === opp.id)
+    );
+    console.log(filtered);
+    setUnregistered(filtered);
+  };
 
   // Render
   if (loading) return <p>Loading volunteer opportunities...</p>;
@@ -57,7 +65,7 @@ function DashStudent(
       <p>TBA: Activity summary, log of hours</p>
       <p>TBA: Form to search for orgs and opportunities</p>
 
-      <p>TBA: currently enrolled opps</p>
+      <h2>Current Registrations:</h2>
       {registered.length == 0 ? (
         <span>No registrations found</span>
       ) : (
@@ -81,11 +89,12 @@ function DashStudent(
         </ul>
       )}
 
-      {opportunities.length == 0 ? (
+      <h2>Volunteer Opportunities:</h2>
+      {unregistered.length == 0 ? (
         <span>No opportunities found</span>
       ) : (
         <ul className="oppCardBase">
-          {opportunities.map((opportunity) => {
+          {unregistered.map((opportunity) => {
             return (
               // <li className="oppCard" key={opportunity.id}>
               <a
