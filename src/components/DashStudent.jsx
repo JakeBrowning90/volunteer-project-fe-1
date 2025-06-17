@@ -63,7 +63,7 @@ function DashStudent(
       <h1>Student Home</h1>
 
       <p>TBA: Activity summary, log of hours</p>
-      <p>TBA: Form to search for orgs and opportunities</p>
+      <p>TBA: Add function to search for orgs and opportunities</p>
       <form action=""className="searchForm">
         <input type="text" />
         <button>Search</button>

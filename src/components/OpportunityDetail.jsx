@@ -120,12 +120,10 @@ function OpportunityDetail(
 
       {localStorage.role == "student" && (
         <>
-          <span>TBA student user: registration form</span>
           {isRegistered() ? (
             <>
-              <h2>Registered!</h2>
               <h2>TBA: Timesheet option</h2>
-              <h2>TBA: Unregister option</h2>
+              <h2>Registered!</h2>
               <form onSubmit={submitUnregistration}>
                 {/* <h2>Join Volunteer List for this Role?</h2> */}
                 {regError && (
@@ -136,6 +134,7 @@ function OpportunityDetail(
             </>
           ) : (
             <form onSubmit={submitRegistration}>
+              <span>TBA student user registration form w/ other details?</span>
               {/* <h2>Join Volunteer List for this Role?</h2> */}
               {regError && <p>An error has occurred, please try again later</p>}
               <button>Register</button>
