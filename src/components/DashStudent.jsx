@@ -48,8 +48,8 @@ function DashStudent(
 
   const getUnregistered = (opportunities) => {
     const userOpps = JSON.parse(localStorage.opportunity);
-    let filtered = opportunities.filter((opp) =>
-      !userOpps.some((item) => item.id === opp.id)
+    let filtered = opportunities.filter(
+      (opp) => !userOpps.some((item) => item.id === opp.id)
     );
     console.log(filtered);
     setUnregistered(filtered);
@@ -64,7 +64,10 @@ function DashStudent(
 
       <p>TBA: Activity summary, log of hours</p>
       <p>TBA: Form to search for orgs and opportunities</p>
-
+      <form action=""className="searchForm">
+        <input type="text" />
+        <button>Search</button>
+      </form>
       <h2>Current Registrations:</h2>
       {registered.length == 0 ? (
         <span>No registrations found</span>

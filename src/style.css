@@ -100,3 +100,8 @@ form {
   display: flex;
   border: 1px solid rgb(189, 189, 189);
 }
+
+.searchForm {
+  display: flex;
+  flex-direction: row;
+}
