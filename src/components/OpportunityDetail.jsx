@@ -44,9 +44,9 @@ function OpportunityDetail(
     }
   };
 
+  // Combine into single function with variable for reg/unreg?
   async function submitRegistration(e) {
     e.preventDefault();
-    console.log("User: " + localStorage.id, "Opp: " + oppId);
     const response = await fetch(apiSource + `user/regopp/${localStorage.id}`, {
       method: "PUT",
       mode: "cors",
@@ -62,6 +62,41 @@ function OpportunityDetail(
       setRegError(true);
     } else {
       setRegError(false);
+      console.log(regResponse);
+      localStorage.setItem(
+        "opportunity",
+        JSON.stringify(regResponse.opportunity)
+      );
+      // Redirect to login
+      window.location.href = "/";
+    }
+  }
+
+  async function submitUnregistration(e) {
+    e.preventDefault();
+    const response = await fetch(
+      apiSource + `user/unregopp/${localStorage.id}`,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          oppId: oppId,
+        }),
+      }
+    );
+    const regResponse = await response.json();
+    if (Array.isArray(regResponse.errors)) {
+      setRegError(true);
+    } else {
+      setRegError(false);
+      console.log(regResponse);
+      localStorage.setItem(
+        "opportunity",
+        JSON.stringify(regResponse.opportunity)
+      );
       // Redirect to login
       window.location.href = "/";
     }
@@ -91,6 +126,13 @@ function OpportunityDetail(
               <h2>Registered!</h2>
               <h2>TBA: Timesheet option</h2>
               <h2>TBA: Unregister option</h2>
+              <form onSubmit={submitUnregistration}>
+                {/* <h2>Join Volunteer List for this Role?</h2> */}
+                {regError && (
+                  <p>An error has occurred, please try again later</p>
+                )}
+                <button>Unregister</button>
+              </form>
             </>
           ) : (
             <form onSubmit={submitRegistration}>
