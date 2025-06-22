@@ -101,6 +101,16 @@ function OpportunityDetail(
       window.location.href = "/";
     }
   }
+  async function startShift(e) {
+    e.preventDefault();
+    const startTime = new Date();
+    console.log(
+      "Clocked in!",
+      "User: " + localStorage.id,
+      "Opp: " + oppId,
+      "Start: " + startTime
+    );
+  }
 
   // Render
   if (loading) return <p>Loading...</p>;
@@ -123,6 +133,9 @@ function OpportunityDetail(
           {isRegistered() ? (
             <>
               <h2>TBA: Timesheet option</h2>
+              <form onSubmit={startShift}>
+                <button>Clock In</button>
+              </form>
               <h2>Registered!</h2>
               <form onSubmit={submitUnregistration}>
                 {/* <h2>Join Volunteer List for this Role?</h2> */}
