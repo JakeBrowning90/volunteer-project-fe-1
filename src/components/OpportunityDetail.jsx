@@ -10,6 +10,8 @@ function OpportunityDetail(
 ) {
   // State declarations
   const [opp, setOpp] = useState("");
+  const [shiftLength, setShiftLength] = useState(null);
+  const [shiftError, setShiftError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [regError, setRegError] = useState(false);
@@ -34,6 +36,10 @@ function OpportunityDetail(
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, []);
+
+  function handleShiftLength(e) {
+    setShiftLength(e.target.value);
+  }
 
   // Check if current user is already listed as a volunteer for this opp
   const isRegistered = () => {
@@ -101,15 +107,45 @@ function OpportunityDetail(
       window.location.href = "/";
     }
   }
+
   async function startShift(e) {
     e.preventDefault();
     const startTime = new Date();
+    const endTime = new Date(
+      startTime.getTime() + 1000 * 60 * 60 * shiftLength
+    );
+
     console.log(
       "Clocked in!",
       "User: " + localStorage.id,
       "Opp: " + oppId,
-      "Start: " + startTime
+      "Start: " + startTime,
+      "End: " + endTime
     );
+
+    const response = await fetch(apiSource + "shift", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: localStorage.id,
+        opp: oppId,
+        starttime: startTime,
+        endtime: endTime,
+      }),
+    });
+    const shiftResponse = await response.json();
+    console.log(shiftResponse);
+    if (Array.isArray(shiftResponse.errors)) {
+      setShiftError(true);
+    } else {
+      setShiftError(false);
+      // TODO: Modal to verify clock-in?
+      // Redirect to home
+      window.location.href = "/";
+    }
   }
 
   // Render
@@ -134,6 +170,22 @@ function OpportunityDetail(
             <>
               <h2>TBA: Timesheet option</h2>
               <form onSubmit={startShift}>
+                <label htmlFor="shiftSelect">Shift length:</label>
+                <select name="" id="shiftSelect" onChange={handleShiftLength}>
+                  <option value="">-Select the a number of hours-</option>
+                  <option value="0.5">0.5</option>
+                  <option value="1.0">1.0</option>
+                  <option value="1.5">1.5</option>
+                  <option value="2.0">2.0</option>
+                  <option value="2.5">2.5</option>
+                  <option value="3.0">3.0</option>
+                  <option value="3.5">3.5</option>
+                  <option value="4.0">4.0</option>
+                  <option value="4.5">4.5</option>
+                  <option value="5.0">5.0</option>
+                  <option value="5.5">5.5</option>
+                  <option value="6.0">6.0</option>
+                </select>
                 <button>Clock In</button>
               </form>
               <h2>Registered!</h2>
