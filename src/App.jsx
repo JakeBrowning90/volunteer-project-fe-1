@@ -15,6 +15,7 @@ import NPODetail from "./components/NPODetail";
 import OpportunityForm from "./components/OpportunityForm";
 import OpportunityDetail from "./components/OpportunityDetail";
 import UserDetail from "./components/UserDetail";
+import Timesheet from "./components/Timesheet";
 // User info
 // Find Orgs
 // Sign up for shift
@@ -57,6 +58,7 @@ function App() {
           <Route path="signup" element={<SignupScreen />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="/user/:userId" element={<UserProfile />} />
+          <Route path="/user/:userId/timesheet" element={<Timesheet />} />
 
           <Route path="/schoolform" element={<SchoolForm />} />
           <Route path="/school/:schoolId" element={<SchoolDetail />} />

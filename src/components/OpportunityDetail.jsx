@@ -168,7 +168,6 @@ function OpportunityDetail(
         <>
           {isRegistered() ? (
             <>
-              <h2>TBA: Timesheet option</h2>
               <form onSubmit={startShift}>
                 <label htmlFor="shiftSelect">Shift length:</label>
                 <select name="" id="shiftSelect" onChange={handleShiftLength}>

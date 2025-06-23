@@ -42,7 +42,6 @@ function DashStudent(
     let filtered = opportunities.filter((opp) =>
       userOpps.some((item) => item.id === opp.id)
     );
-    console.log(filtered);
     setRegistered(filtered);
   }
 
@@ -51,7 +50,6 @@ function DashStudent(
     let filtered = opportunities.filter(
       (opp) => !userOpps.some((item) => item.id === opp.id)
     );
-    console.log(filtered);
     setUnregistered(filtered);
   };
 
@@ -63,8 +61,10 @@ function DashStudent(
       <h1>Student Home</h1>
 
       <p>TBA: Activity summary, log of hours</p>
+      <Link to={`/user/${localStorage.id}/timesheet`}>Timesheet</Link>
+
       <p>TBA: Add function to search for orgs and opportunities</p>
-      <form action=""className="searchForm">
+      <form action="" className="searchForm">
         <input type="text" />
         <button>Search</button>
       </form>
