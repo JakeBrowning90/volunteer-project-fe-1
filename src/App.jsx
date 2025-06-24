@@ -62,10 +62,10 @@ function App() {
 
           <Route path="/schoolform" element={<SchoolForm />} />
           <Route path="/school/:schoolId" element={<SchoolDetail />} />
-          <Route
+          {/* <Route
             path="/school/:schoolId/user/:userId"
             element={<UserDetail />}
-          />
+          /> */}
 
           <Route path="/npoform" element={<NPOForm />} />
           <Route path="/npo/:npoId" element={<NPODetail />} />

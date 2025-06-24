@@ -10,13 +10,16 @@ function Timesheet(
   }
 ) {
   // State declarations
+  const [user, setUser] = useState([]);
   const [shifts, setShifts] = useState([]);
   const [total, setTotal] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // Functions
+  const { userId } = useParams();
+
   useEffect(() => {
-    fetch(apiSource + `shift/user/${localStorage.id}`, {
+    fetch(apiSource + `shift/user/${userId}`, {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -29,8 +32,10 @@ function Timesheet(
         return response.json();
       })
       .then((response) => {
-        setShifts(response);
-        getTotal(response);
+        console.log(response)
+        setUser(response[0])
+        setShifts(response[1]);
+        getTotal(response[1]);
       })
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
@@ -51,8 +56,11 @@ function Timesheet(
   if (error) return <p>Network error, please try again later.</p>;
   return (
     <div>
-      <Link to="/">Back to Home</Link>
-      <h1>Timesheet</h1>
+      {localStorage.role == "student" && <Link to="/">Back to Home</Link>}
+      {localStorage.role == "school_admin" && (
+        <Link to={`/school/${user.school[0].id}`}>Back to Student List</Link>
+      )}
+      <h1>Timesheet: {user.username}</h1>
       {shifts.length == 0 ? (
         <span>No recorded shifts</span>
       ) : (

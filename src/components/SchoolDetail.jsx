@@ -53,17 +53,13 @@ function SchoolDetail(
           {school.user.map((user) => {
             return (
               <a
-              href={`${school.id}/user/${user.id}`}
-              className="userListItem"
-              key={user.id}
-            >
-              {/* <li key={user.id} className="userListItem"> */}
+                // href={`${school.id}/user/${user.id}`}
+                href={`/user/${user.id}/timesheet`}
+                className="userListItem"
+                key={user.id}
+              >
                 <span className="userListTitle">{user.username}</span>
-                <span> | {user.role}</span>
-                <span>TBA: Link to detail w/ hour breakdown</span>
-
                 <span>TBA: Hour total</span>
-              {/* </li> */}
               </a>
             );
           })}
