@@ -59,9 +59,7 @@ function DashStudent(
   return (
     <div>
       <h1>Student Home</h1>
-
-      <p>TBA: Activity summary, log of hours</p>
-      <Link to={`/user/${localStorage.id}/timesheet`}>Timesheet</Link>
+      <Link to={`/user/${localStorage.id}/timesheet`}>View Timesheet</Link>
 
       <p>TBA: Add function to search for orgs and opportunities</p>
       <form action="" className="searchForm">
