@@ -32,8 +32,8 @@ function Timesheet(
         return response.json();
       })
       .then((response) => {
-        console.log(response)
-        setUser(response[0])
+        // console.log(response);
+        setUser(response[0]);
         setShifts(response[1]);
         getTotal(response[1]);
       })
@@ -44,9 +44,13 @@ function Timesheet(
   function getTotal(shifts) {
     let total = 0;
     for (let i = 0; i < shifts.length; i++) {
-      total +=
-        (Date.parse(shifts[i].endtime) - Date.parse(shifts[i].starttime)) /
-        (1000 * 60 * 60);
+      // total +=
+      //   (Date.parse(shifts[i].endtime) - Date.parse(shifts[i].starttime)) /
+      //   (1000 * 60 * 60);
+      console.log(shifts[i].starttime);
+      console.log(new Date(shifts[i].starttime));
+
+      total += parseFloat(shifts[i].length);
     }
     setTotal(total);
   }
@@ -79,16 +83,32 @@ function Timesheet(
                   <span>{shift.starttime.slice(0, 10)}</span>
                   <span>{shift.opportunity[0].title} </span>
 
-                  <span>{shift.starttime.slice(11, 16)}</span>
-
-                  <span>{shift.endtime.slice(11, 16)}</span>
+                  {/* <span>{shift.starttime.slice(11, 16)}</span> */}
                   <span>
+                    {new Date(Date.parse(shift.starttime))
+                      .toTimeString()
+                      .slice(0, 5)}
+                  </span>
+
+                  {/* console.log(new Date(shifts[i].starttime)); */}
+
+                  <span>
+                    {new Date(
+                      Date.parse(shift.starttime) +
+                        parseFloat(shift.length) * (60 * 60 * 1000)
+                    )
+                      .toTimeString()
+                      .slice(0, 5)}
+                  </span>
+
+                  {/* <span>
                     {(
                       (Date.parse(shift.endtime) -
                         Date.parse(shift.starttime)) /
                       (1000 * 60 * 60)
                     ).toFixed(1)}
-                  </span>
+                  </span> */}
+                  <span>{parseFloat(shift.length).toFixed(1)}</span>
                 </li>
               );
             })}
@@ -97,7 +117,7 @@ function Timesheet(
               <span></span>
               <span></span>
               <span></span>
-              <h2>{total}</h2>
+              <h2>{total.toFixed(1)}</h2>
             </div>
           </ul>
         </>

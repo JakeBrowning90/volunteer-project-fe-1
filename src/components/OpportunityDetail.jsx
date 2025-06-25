@@ -111,18 +111,6 @@ function OpportunityDetail(
   async function startShift(e) {
     e.preventDefault();
     const startTime = new Date();
-    const endTime = new Date(
-      startTime.getTime() + 1000 * 60 * 60 * shiftLength
-    );
-
-    console.log(
-      "Clocked in!",
-      "User: " + localStorage.id,
-      "Opp: " + oppId,
-      "Start: " + startTime,
-      "End: " + endTime
-    );
-
     const response = await fetch(apiSource + "shift", {
       method: "POST",
       mode: "cors",
@@ -133,7 +121,8 @@ function OpportunityDetail(
         user: localStorage.id,
         opp: oppId,
         starttime: startTime,
-        endtime: endTime,
+        length: shiftLength,
+        // endtime: endTime,
       }),
     });
     const shiftResponse = await response.json();
@@ -187,7 +176,7 @@ function OpportunityDetail(
                 </select>
                 <button>Clock In</button>
               </form>
-              <h2>Registered!</h2>
+              <h2>Unregister from this Volunteer Opportunity?</h2>
               <form onSubmit={submitUnregistration}>
                 {/* <h2>Join Volunteer List for this Role?</h2> */}
                 {regError && (
