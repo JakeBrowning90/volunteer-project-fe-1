@@ -35,7 +35,7 @@ function App() {
         <nav>
           {localStorage.username ? (
             <>
-              <Link to={`/user/${localStorage.id}`}>
+              <Link to={`/profile`}>
                 {localStorage.username}
               </Link>
               <a onClick={logout}>Log Out</a>
@@ -57,7 +57,8 @@ function App() {
           <Route path="login" element={<LoginScreen />} />
           <Route path="signup" element={<SignupScreen />} />
           <Route path="/" element={<HomeScreen />} />
-          <Route path="/user/:userId" element={<UserProfile />} />
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/user/:userId" element={<UserDetail />} />
           <Route path="/user/:userId/timesheet" element={<Timesheet />} />
 
           <Route path="/schoolform" element={<SchoolForm />} />

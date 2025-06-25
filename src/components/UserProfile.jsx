@@ -15,10 +15,8 @@ function UserProfile(
   const [error, setError] = useState(null);
 
   // Functions
-  const { userId } = useParams();
-
   useEffect(() => {
-    fetch(apiSource + `user/${userId}`, {
+    fetch(apiSource + `user/${localStorage.id}`, {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +41,12 @@ function UserProfile(
       <Link to="/">Back to Home</Link>
       <h1>User Profile</h1>
       <h2>{user.username}</h2>
-      <span>TBA: user details, form to update info</span>
+      <span>TBA: form to update info</span>
+      <form action="">
+        <label htmlFor="profileUsernameInput">Username:</label>
+        <input type="text" id="profileUsernameInput"/>
+        <button>Save Changes</button>
+      </form>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import apiSource
 import { apiSource } from "../apiSource";
 import { Routes, Route, Link, useNavigate, useParams } from "react-router";
+import punchclock from "../assets/punchclock.svg";
 
 function OpportunityDetail(
   {
@@ -206,8 +207,13 @@ function OpportunityDetail(
                 {opp.volunteer.map((volunteer) => {
                   return (
                     <li key={volunteer.id} className="userListItem">
-                      <span>{volunteer.username}</span>
-                      <span> - TBA: contact info</span>
+                      <Link to={`/user/${volunteer.id}`}>
+                        {volunteer.username}
+                      </Link>
+                      <span>TBA: School/contact?</span>
+                      <Link to={`/user/${volunteer.id}/timesheet`}>
+                        <img src={punchclock} alt="" />
+                      </Link>
                     </li>
                   );
                 })}

@@ -40,12 +40,16 @@ function UserDetail(
   if (error) return <p>Network error, please try again later.</p>;
   return (
     <div>
-      <Link to={`/school/${user.school[0].id}`}>
-        Back to School Student List
-      </Link>
+      {localStorage.role == "school" && (
+        <Link to={`../npo/${opp.npo[0].id}`}>Back to School Student List</Link>
+      )}
+       {localStorage.role == "org_admin" && (
+        <Link to={`/`}>Back to Home</Link>
+      )}
       <h1>User Detail</h1>
       <h2>{user.username}</h2>
-      <span>TBA: Breakdown of volunteer hours</span>
+      <span>TBA: Public info, contact details, etc</span>
+      <span>TBA: Link to timesheet? or combine?</span>
     </div>
   );
 }

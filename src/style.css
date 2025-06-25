@@ -1,7 +1,7 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
   --color-body-dark: black;
-  --color-text-white: white;
+  --color-text-white: #ffffff;
   --color-text-grey: rgb(219, 219, 219);
   --color-header-green: rgb(72, 141, 72);
   --color-header-lightgreen: rgb(70, 165, 70);

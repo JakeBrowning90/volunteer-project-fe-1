@@ -47,8 +47,8 @@ function Timesheet(
       // total +=
       //   (Date.parse(shifts[i].endtime) - Date.parse(shifts[i].starttime)) /
       //   (1000 * 60 * 60);
-      console.log(shifts[i].starttime);
-      console.log(new Date(shifts[i].starttime));
+      // console.log(shifts[i].starttime);
+      // console.log(new Date(shifts[i].starttime));
 
       total += parseFloat(shifts[i].length);
     }
@@ -63,6 +63,14 @@ function Timesheet(
       {localStorage.role == "student" && <Link to="/">Back to Home</Link>}
       {localStorage.role == "school_admin" && (
         <Link to={`/school/${user.school[0].id}`}>Back to Student List</Link>
+      )}
+      {localStorage.role == "org_admin" && (
+        <>
+          <Link to={`/`}>Back to Home</Link>
+          <span>
+            TODO: filter fetch to only show shifts for NPO's opportunities
+          </span>
+        </>
       )}
       <h1>Timesheet: {user.username}</h1>
       {shifts.length == 0 ? (
