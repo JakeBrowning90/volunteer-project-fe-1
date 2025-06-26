@@ -19,26 +19,50 @@ function Timesheet(
   const { userId } = useParams();
 
   useEffect(() => {
-    fetch(apiSource + `shift/user/${userId}`, {
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.status >= 400) {
-          throw new Error("Fetch error");
-        }
-        return response.json();
+    // If user is student or school admin, fetch all shifts
+    if (localStorage.role == "student" || localStorage.role == "school_admin") {
+      fetch(apiSource + `shift/user/${userId}`, {
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .then((response) => {
-        // console.log(response);
-        setUser(response[0]);
-        setShifts(response[1]);
-        getTotal(response[1]);
+        .then((response) => {
+          if (response.status >= 400) {
+            throw new Error("Fetch error");
+          }
+          return response.json();
+        })
+        .then((response) => {
+          // console.log(response);
+          setUser(response[0]);
+          setShifts(response[1]);
+          getTotal(response[1]);
+        })
+        .catch((error) => setError(error))
+        .finally(() => setLoading(false));
+    } else if (localStorage.role == "org_admin") {
+      fetch(apiSource + `shift/${localStorage.id}/user/${userId}`, {
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => setError(error))
-      .finally(() => setLoading(false));
+        .then((response) => {
+          if (response.status >= 400) {
+            throw new Error("Fetch error");
+          }
+          return response.json();
+        })
+        .then((response) => {
+          // console.log(response);
+          setUser(response[0]);
+          setShifts(response[1]);
+          getTotal(response[1]);
+        })
+        .catch((error) => setError(error))
+        .finally(() => setLoading(false));
+    }
   }, []);
 
   function getTotal(shifts) {
