@@ -44,16 +44,20 @@ function SchoolForm(
   return (
     <div>
       <Link to="/">Back to Home</Link>
-      <h1>Create School</h1>
-      {invalidSchool && <p>Invalid school</p>}
+
       <form onSubmit={submitSchool}>
-        <label htmlFor="schoolName">School name:</label>
-        <input
-          type="text"
-          id="schoolName"
-          value={schoolName}
-          onChange={handleSchoolName}
-        />
+        <h1>Create School</h1>
+        {invalidSchool && <p>Invalid school</p>}
+        <div className="formLabelInput">
+          <label htmlFor="schoolName">School name:</label>
+          <input
+            type="text"
+            id="schoolName"
+            value={schoolName}
+            onChange={handleSchoolName}
+          />
+        </div>
+
         <button>Submit</button>
       </form>
     </div>

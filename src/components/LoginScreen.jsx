@@ -59,30 +59,34 @@ function LoginScreen(
 
   // Render
   return (
-    <div>
-      <h1>Log In</h1>
-      {invalidLogin && <p>Invalid login</p>}
+    <>
       <form onSubmit={submitLogin}>
-        <label htmlFor="usernameInput">Username:</label>
+        <h1 className="centeredText">Log In</h1>
+        {invalidLogin && <p>Invalid login</p>}
+        {/* <div className="formLabelInput"></div> */}
+        <div className="formLabelInput"> <label htmlFor="usernameInput">Username:</label>
         <input
           type="text"
           name=""
           id="usernameInput"
           value={username}
           onChange={handleUsername}
-        />
-        <label htmlFor="passwordInput">Password:</label>
+        /></div>
+        <div className="formLabelInput"> <label htmlFor="passwordInput">Password:</label>
         <input
           type="password"
           name=""
           id="passwordInput"
           value={password}
           onChange={handlePassword}
-        />
+        /></div>
+
+       
+       
         <button>Submit</button>
       </form>
-      <Link to="/signup">Sign Up</Link>
-    </div>
+      <Link to="/signup" className="centeredText">Sign Up</Link>
+    </>
   );
 }
 

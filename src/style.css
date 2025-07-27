@@ -1,11 +1,11 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
+  --color-bg-softwhite: #f2f2f2;
   --color-body-dark: #333;
   --color-text-white: #ffffff;
   --color-text-grey: rgb(219, 219, 219);
   --color-header-green: rgb(72, 141, 72);
   --color-header-lightgreen: rgb(70, 165, 70);
-  --color-bg-softwhite: #f2f2f2;
 }
 
 * {
@@ -14,6 +14,7 @@
 
 a {
   color: var(--color-text-white);
+  text-decoration: underline;
 }
 
 button {
@@ -58,27 +59,41 @@ footer {
 main {
   background-color: var(--color-body-dark);
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 h1 {
   font-size: 2rem;
+  font-weight: bold;
 }
 h2 {
   font-size: 1.5rem;
 }
 
 nav {
-  border: 1px solid black;
   display: flex;
   gap: 10px;
   justify-content: end;
 }
 
 form {
+  background-color: var(--color-header-green);
   display: flex;
   flex-direction: column;
+  /* min-width: 400px; */
+  margin: 0 auto 10px auto;
+  padding: 20px 10px;
   gap: 10px;
+  border-radius: 5px;
 }
+.formLabelInput {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .oppCardBase {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -121,5 +136,10 @@ form {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 5px;
+  gap: 5px;
   border-bottom: 1px solid var(--color-text-grey);
+}
+
+.centeredText {
+  margin: 0 auto;
 }

@@ -39,12 +39,12 @@ function SchoolDetail(
   if (loading) return <p>Loading school info...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       <Link to="/">Back to Dashboard</Link>
 
       <h1>School Detail</h1>
       <h2>{school.schoolname}</h2>
-      <h2>{school.code}</h2>
+      <h2>Reg. Code: {school.code}</h2>
 
       {school.user.length == 0 ? (
         <span>No users registered</span>
@@ -65,7 +65,7 @@ function SchoolDetail(
           })}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 

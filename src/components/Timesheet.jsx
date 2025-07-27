@@ -83,7 +83,7 @@ function Timesheet(
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       {localStorage.role == "student" && <Link to="/">Back to Home</Link>}
       {localStorage.role == "school_admin" && (
         <Link to={`/school/${user.school[0].id}`}>Back to Student List</Link>
@@ -101,14 +101,14 @@ function Timesheet(
         <span>No recorded shifts</span>
       ) : (
         <>
-          <div className="timesheetRow">
-            <span>Date</span>
-            <span>Program</span>
-            <span>Shift start</span>
-            <span>Shift end</span>
-            <span>Hours</span>
-          </div>
           <ul>
+            <div className="timesheetRow">
+              <span>Date</span>
+              <span>Program</span>
+              <span>Shift start</span>
+              <span>Shift end</span>
+              <span>Hours</span>
+            </div>
             {shifts.map((shift) => {
               return (
                 <li key={shift.id} className="timesheetRow">
@@ -154,7 +154,7 @@ function Timesheet(
           </ul>
         </>
       )}
-    </div>
+    </>
   );
 }
 

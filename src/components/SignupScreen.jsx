@@ -71,42 +71,50 @@ function SignupScreen(
   }
   // Render
   return (
-    <div>
-      <h1>Sign Up</h1>
-      {invalidSignup && <p>Invalid signup</p>}
+    <>
       <form onSubmit={submitSignup}>
-        <label htmlFor="usernameInput">Username:</label>
-        <input
-          type="text"
-          name=""
-          id="usernameInput"
-          value={username}
-          onChange={handleUsername}
-        />
-        <label htmlFor="passwordInput">Password:</label>
-        <input
-          type="password"
-          name=""
-          id="passwordInput"
-          value={password}
-          onChange={handlePassword}
-        />
-        <label htmlFor="confirmPasswordInput">Confirm Password:</label>
-        <input
-          type="password"
-          name=""
-          id="confirmPasswordInput"
-          value={confirmPassword}
-          onChange={handleConfirmPassword}
-        />
-        <label htmlFor="roleSelect">Role:</label>
-        <select name="" id="roleSelect" onChange={handleRole}>
-          <option value="student">Student</option>
-          <option value="school_admin">School Admin</option>
-          <option value="org_admin">NPO Admin</option>
-        </select>
+        <h1 className="centeredText">Sign Up</h1>
+        {invalidSignup && <p>Invalid signup</p>}
+        <div className="formLabelInput">
+          <label htmlFor="usernameInput">Username:</label>
+          <input
+            type="text"
+            name=""
+            id="usernameInput"
+            value={username}
+            onChange={handleUsername}
+          />
+        </div>
+        <div className="formLabelInput">
+          <label htmlFor="passwordInput">Password:</label>
+          <input
+            type="password"
+            name=""
+            id="passwordInput"
+            value={password}
+            onChange={handlePassword}
+          />
+        </div>
+        <div className="formLabelInput">
+          <label htmlFor="confirmPasswordInput">Confirm Password:</label>
+          <input
+            type="password"
+            name=""
+            id="confirmPasswordInput"
+            value={confirmPassword}
+            onChange={handleConfirmPassword}
+          />
+        </div>
+        <div className="formLabelInput">
+          <label htmlFor="roleSelect">Role:</label>
+          <select name="" id="roleSelect" onChange={handleRole}>
+            <option value="student">Student</option>
+            <option value="school_admin">School Admin</option>
+            <option value="org_admin">NPO Admin</option>
+          </select>
+        </div>
         {role == "student" && (
-          <div>
+          <div className="formLabelInput">
             <label htmlFor="schoolCodeInput">School code:</label>
             <input
               type="text"
@@ -117,10 +125,13 @@ function SignupScreen(
             ></input>
           </div>
         )}
+
         <button>Submit</button>
       </form>
-      <Link to="/login">Back to Login</Link>
-    </div>
+      <Link to="/login" className="centeredText">
+        Back to Login
+      </Link>
+    </>
   );
 }
 

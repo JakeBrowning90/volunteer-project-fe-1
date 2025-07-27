@@ -33,10 +33,9 @@ function DashSchoolAdmin(
 
   // Render
   return (
-    <div>
+    <>
       <h1>School Admin Home</h1>
-      <span>Create school:</span>
-      <Link to="/schoolform">Form</Link>
+      <Link to="/schoolform">Create School</Link>
       {schoolList.length == 0 ? (
         <span>No schools registered</span>
       ) : (
@@ -54,7 +53,7 @@ function DashSchoolAdmin(
       )}
       <p>TBA: List of ALL registered students, logged hours?</p>
       <p>TBA: Report generator</p>
-    </div>
+    </>
   );
 }
 
