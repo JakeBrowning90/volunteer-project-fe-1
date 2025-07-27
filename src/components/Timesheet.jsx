@@ -101,57 +101,61 @@ function Timesheet(
         <span>No recorded shifts</span>
       ) : (
         <>
-          <ul>
-            <div className="timesheetRow">
-              <span>Date</span>
-              <span>Program</span>
-              <span>Shift start</span>
-              <span>Shift end</span>
-              <span>Hours</span>
-            </div>
-            {shifts.map((shift) => {
-              return (
-                <li key={shift.id} className="timesheetRow">
-                  <span>{shift.starttime.slice(0, 10)}</span>
-                  <span>{shift.opportunity[0].title} </span>
+          <table>
+            <thead className="timesheetRow">
+              <th>Date</th>
+              <th>Program</th>
+              <th>Shift start</th>
+              <th>Shift end</th>
+              <th>Hours</th>
+            </thead>
+            <tbody>
+              {shifts.map((shift) => {
+                return (
+                  <tr key={shift.id} className="timesheetRow">
+                    <th>{shift.starttime.slice(0, 10)}</th>
+                    <td>{shift.opportunity[0].title} </td>
 
-                  {/* <span>{shift.starttime.slice(11, 16)}</span> */}
-                  <span>
-                    {new Date(Date.parse(shift.starttime))
-                      .toTimeString()
-                      .slice(0, 5)}
-                  </span>
+                    {/* <span>{shift.starttime.slice(11, 16)}</span> */}
+                    <td>
+                      {new Date(Date.parse(shift.starttime))
+                        .toTimeString()
+                        .slice(0, 5)}
+                    </td>
 
-                  {/* console.log(new Date(shifts[i].starttime)); */}
+                    {/* console.log(new Date(shifts[i].starttime)); */}
 
-                  <span>
-                    {new Date(
-                      Date.parse(shift.starttime) +
-                        parseFloat(shift.length) * (60 * 60 * 1000)
-                    )
-                      .toTimeString()
-                      .slice(0, 5)}
-                  </span>
+                    <td>
+                      {new Date(
+                        Date.parse(shift.starttime) +
+                          parseFloat(shift.length) * (60 * 60 * 1000)
+                      )
+                        .toTimeString()
+                        .slice(0, 5)}
+                    </td>
 
-                  {/* <span>
+                    {/* <span>
                     {(
                       (Date.parse(shift.endtime) -
                         Date.parse(shift.starttime)) /
                       (1000 * 60 * 60)
                     ).toFixed(1)}
                   </span> */}
-                  <span>{parseFloat(shift.length).toFixed(1)}</span>
-                </li>
-              );
-            })}
-            <div className="timesheetRow">
-              <h2>Total:</h2>
-              <span></span>
-              <span></span>
-              <span></span>
-              <h2>{total.toFixed(1)}</h2>
-            </div>
-          </ul>
+                    <td>{parseFloat(shift.length).toFixed(1)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+            <tfoot>
+              <tr className="timesheetRow">
+                <th scope="row" colSpan="4">
+                  Total:
+                </th>
+
+                <td>{total.toFixed(1)}</td>
+              </tr>
+            </tfoot>
+          </table>
         </>
       )}
     </>
