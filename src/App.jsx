@@ -35,9 +35,7 @@ function App() {
         <nav>
           {localStorage.username ? (
             <>
-              <Link to={`/profile`}>
-                {localStorage.username}
-              </Link>
+              <Link to={`/profile`}>{localStorage.username}</Link>
               <a onClick={logout}>Log Out</a>
             </>
           ) : (
@@ -76,6 +74,7 @@ function App() {
           <Route path="/opp/:oppId" element={<OpportunityDetail />} />
         </Routes>
       </main>
+      <footer>App by Jake Browning, 2025</footer>
     </>
   );
 }
