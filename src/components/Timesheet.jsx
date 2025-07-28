@@ -102,12 +102,14 @@ function Timesheet(
       ) : (
         <>
           <table>
-            <thead className="timesheetRow">
-              <th>Date</th>
-              <th>Program</th>
-              <th>Shift start</th>
-              <th>Shift end</th>
-              <th>Hours</th>
+            <thead>
+              <tr className="timesheetRow">
+                <th>Date</th>
+                <th>Program</th>
+                <th>Shift start</th>
+                <th>Shift end</th>
+                <th>Hours</th>
+              </tr>
             </thead>
             <tbody>
               {shifts.map((shift) => {
