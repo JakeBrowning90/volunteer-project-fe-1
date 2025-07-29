@@ -59,7 +59,7 @@ function SchoolDetail(
                 key={user.id}
               >
                 <span className="userListTitle">{user.username}</span>
-                <span>TBA: Hour total</span>
+                <span>Hour total: {user.shift}</span>
               </a>
             );
           })}
