@@ -49,21 +49,41 @@ function SchoolDetail(
       {school.user.length == 0 ? (
         <span>No users registered</span>
       ) : (
-        <ul className="userList">
-          {school.user.map((user) => {
-            return (
-              <a
-                // href={`${school.id}/user/${user.id}`}
-                href={`/user/${user.id}/timesheet`}
-                className="userListItem"
-                key={user.id}
-              >
-                <span className="userListTitle">{user.username}</span>
-                <span>Hour total: {user.shift}</span>
-              </a>
-            );
-          })}
-        </ul>
+        // <ul className="userList">
+        //   {school.user.map((user) => {
+        //     return (
+        //       <a
+        //         // href={`${school.id}/user/${user.id}`}
+        //         href={`/user/${user.id}/timesheet`}
+        //         className="userListItem"
+        //         key={user.id}
+        //       >
+        //         <span className="userListTitle">{user.username}</span>
+        //         <span>Hour total: {user.shift}</span>
+        //       </a>
+        //     );
+        //   })}
+        // </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Volunteer Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            {school.user.map((user) => {
+              return (
+                <tr key={user.id}>
+                  <td>{user.username} </td>
+                  <td>
+                    <a href={`/user/${user.id}/timesheet`}>{user.shift}</a>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       )}
     </>
   );
