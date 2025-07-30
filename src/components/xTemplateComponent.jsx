@@ -33,7 +33,7 @@ function ComponentName(
   // Render
   //   if (loading) return <p>Loading...</p>;
   //   if (error) return <p>Network error, please try again later.</p>;
-  //   return <div></div>;
+  //   return <></>;
 }
 
 // export default ComponentName

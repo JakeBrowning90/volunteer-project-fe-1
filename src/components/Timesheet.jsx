@@ -91,9 +91,7 @@ function Timesheet(
       {localStorage.role == "org_admin" && (
         <>
           <Link to={`/`}>Back to Home</Link>
-          <span>
-            TODO: filter fetch to only show shifts for NPO's opportunities
-          </span>
+          <span>TODO: Links to form to edit/delete shifts</span>
         </>
       )}
       <h1>Timesheet: {user.username}</h1>
