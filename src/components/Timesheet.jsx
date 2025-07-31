@@ -92,6 +92,7 @@ function Timesheet(
         <>
           <Link to={`/`}>Back to Home</Link>
           <span>TODO: Links to form to edit/delete shifts</span>
+          <Link to={`/`}>TODO: Manually create shift</Link>
         </>
       )}
       <h1>Timesheet: {user.username}</h1>
@@ -141,7 +142,18 @@ function Timesheet(
                       (1000 * 60 * 60)
                     ).toFixed(1)}
                   </span> */}
-                    <td>{parseFloat(shift.length).toFixed(1)}</td>
+                    {localStorage.role == "org_admin" ? (
+                      <>
+                        <td>
+                          <a href={`/shift/${shift.id}`}>{parseFloat(shift.length).toFixed(1)}</a>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td>{parseFloat(shift.length).toFixed(1)}</td>{" "}
+                      </>
+                    )}
+                    {/* <td>{parseFloat(shift.length).toFixed(1)}</td> */}
                   </tr>
                 );
               })}

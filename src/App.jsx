@@ -10,6 +10,7 @@ import HomeScreen from "./components/HomeScreen";
 import UserProfile from "./components/UserProfile";
 import SchoolForm from "./components/SchoolForm";
 import SchoolDetail from "./components/SchoolDetail";
+import ShiftEditForm from "./components/ShiftEditForm";
 import NPOForm from "./components/NPOForm";
 import NPODetail from "./components/NPODetail";
 import OpportunityForm from "./components/OpportunityForm";
@@ -65,6 +66,8 @@ function App() {
             path="/school/:schoolId/user/:userId"
             element={<UserDetail />}
           /> */}
+
+          <Route path="/shift/:shiftId" element={<ShiftEditForm />} />
 
           <Route path="/npoform" element={<NPOForm />} />
           <Route path="/npo/:npoId" element={<NPODetail />} />
