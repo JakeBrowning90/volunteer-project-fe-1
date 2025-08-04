@@ -13,6 +13,7 @@ function ShiftEditForm(
   const [shift, setShift] = useState([]);
   const [newShiftDate, setNewShiftDate] = useState("");
   const [newShiftLength, setNewShiftLength] = useState(null);
+  const [shiftError, setShiftError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -47,9 +48,28 @@ function ShiftEditForm(
 
   async function submitShiftEdit(e) {
     e.preventDefault();
-
     console.log(newShiftDate);
-    console.log(newShiftLength);
+    const response = await fetch(apiSource + `shift/${shiftId}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        starttime: newShiftDate,
+        length: newShiftLength,
+      }),
+    });
+    const shiftResponse = await response.json();
+    console.log(shiftResponse);
+    if (Array.isArray(shiftResponse.errors)) {
+      setShiftError(true);
+    } else {
+      setShiftError(false);
+      // TODO: Modal to verify clock-in?
+      // Redirect to home
+      window.location.href = `/user/${shift.volunteer[0].id}/timesheet`;
+    }
   }
 
   // Render
