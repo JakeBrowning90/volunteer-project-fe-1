@@ -42,10 +42,9 @@ function DashOrgAdmin(
   if (loading) return <p>Loading NPOs...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       <h1>NPO Admin Home</h1>
-      <span>Create NPO:</span>
-      <Link to="/npoform">Form</Link>
+      <Link to="/npoform">Create NPO</Link>
       {npoList.length == 0 ? (
         <span>No NPOs registered</span>
       ) : (
@@ -66,25 +65,35 @@ function DashOrgAdmin(
       ) : (
         <>
           <span>All Registered Volunteers:</span>
-
-          <ul className="userList">
-            {volunteerList.map((volunteer) => {
-              return (
-                <li key={volunteer.id} className="userListItem">
-                  {/* <span>{npo.nponame}</span> */}
-                  <Link to={`user/${volunteer.id}`}>{volunteer.username}</Link>
-                  <span>TBA: School/contact?</span>
-
-                  <Link to={`/user/${volunteer.id}/timesheet`}>
-                    <img src={punchclock} alt="" />
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Timesheet</th>
+              </tr>
+            </thead>
+            <tbody>
+              {volunteerList.map((volunteer) => {
+                return (
+                  <tr key={volunteer.id}>
+                    <th>
+                      <Link to={`user/${volunteer.id}`}>
+                        {volunteer.username}
+                      </Link>
+                    </th>
+                    <td>
+                      <Link to={`/user/${volunteer.id}/timesheet`}>
+                        <img src={punchclock} alt="" />
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </>
       )}
-    </div>
+    </>
   );
 }
 

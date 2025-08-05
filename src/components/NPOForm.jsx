@@ -42,22 +42,26 @@ function NPOForm(
 
   // Render
   return (
-    <div>
+    <>
       <Link to="/">Back to Home</Link>
 
-      <h1>Create NPO</h1>
       {invalidNpo && <p>Invalid NPO</p>}
       <form onSubmit={submitNPO}>
-        <label htmlFor="npoName">NPO name:</label>
-        <input
-          type="text"
-          id="npoName"
-          value={npoName}
-          onChange={handleNpoName}
-        />
+        <div className="formLabelInput">
+          <h1>Create NPO</h1>
+
+          <label htmlFor="npoName">NPO name:</label>
+          <input
+            type="text"
+            id="npoName"
+            value={npoName}
+            onChange={handleNpoName}
+          />
+        </div>
+
         <button>Submit</button>
       </form>
-    </div>
+    </>
   );
 }
 
