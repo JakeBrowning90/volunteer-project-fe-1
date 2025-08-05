@@ -142,7 +142,7 @@ function OpportunityDetail(
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       {/* Conditional based on user being student or org admin */}
       {localStorage.role == "student" && <Link to="/">Back to Home</Link>}
       {localStorage.role == "org_admin" && (
@@ -150,8 +150,9 @@ function OpportunityDetail(
       )}
 
       <h1>Opportunity Detail</h1>
-      <h2>{opp.title}</h2>
       <h2>{opp.npo[0].nponame}</h2>
+      <h2>{opp.title}</h2>
+
       <p>{opp.description}</p>
 
       {localStorage.role == "student" && (
@@ -222,7 +223,7 @@ function OpportunityDetail(
           )}
         </>
       )}
-    </div>
+    </>
   );
 }
 

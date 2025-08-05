@@ -37,7 +37,7 @@ function UserProfile(
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       <Link to="/">Back to Home</Link>
       <h1>User Profile</h1>
       <h2>{user.username}</h2>
@@ -47,7 +47,7 @@ function UserProfile(
         <input type="text" id="profileUsernameInput"/>
         <button>Save Changes</button>
       </form>
-    </div>
+    </>
   );
 }
 

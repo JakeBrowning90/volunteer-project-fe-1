@@ -57,7 +57,7 @@ function DashStudent(
   if (loading) return <p>Loading volunteer opportunities...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       <h1>Student Home</h1>
       <Link to={`/user/${localStorage.id}/timesheet`}>View Timesheet</Link>
 
@@ -113,7 +113,7 @@ function DashStudent(
           })}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 

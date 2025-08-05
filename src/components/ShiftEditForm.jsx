@@ -84,13 +84,23 @@ function ShiftEditForm(
       <span>Shift ID: {shift.id}</span>
       <span>Volunteer Name: {shift.volunteer[0].username}</span>
       <span>Opportunity: {shift.opportunity[0].title}</span>
-      <span>Date: {shift.starttime}</span>
-      <span>Start time: {shift.starttime}</span>
+      <span>Date: {shift.starttime.slice(0, 10)}</span>
+      <span>
+        Start time:
+        {new Date(Date.parse(shift.starttime)).toTimeString().slice(0, 5)}
+      </span>
       <span>Shift length (hours): {shift.length}</span>
 
       <form onSubmit={submitShiftEdit}>
         <h1>Edit Shift</h1>
         <span>Volunteer: {shift.volunteer[0].username}</span>
+        <span>Opportunity: {shift.opportunity[0].title}</span>
+        <span>
+          Date / Start time: {shift.starttime.slice(0, 10)}, 
+           {new Date(Date.parse(shift.starttime)).toTimeString().slice(0, 5)}
+        </span>
+        <span>Shift length (hours): {shift.length}</span>
+
         {/* <div className="formLabelInput">
           <label htmlFor="editDatetimeInput">Opportunity:</label>
           <select id="editDatetimeInput">

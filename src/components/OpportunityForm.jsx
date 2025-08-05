@@ -97,7 +97,7 @@ function OpportunityForm(
 
   // Render
   return (
-    <div>
+    <>
       <Link to={`../npo/${npo.id}`}>Back to NPO Overview</Link>
       <h1>{npo.nponame}</h1>
       <h1>Create Volunteering Opportunity</h1>
@@ -127,7 +127,7 @@ function OpportunityForm(
 
         <button>Submit</button>
       </form>
-    </div>
+    </>
   );
 }
 

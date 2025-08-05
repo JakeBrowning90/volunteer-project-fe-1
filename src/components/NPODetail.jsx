@@ -40,7 +40,7 @@ function NPODetail(
   if (loading) return <p>Loading NPO info...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       <Link to="/">Back to Home</Link>
 
       <h1>NPO Detail</h1>
@@ -71,7 +71,7 @@ function NPODetail(
           })}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 

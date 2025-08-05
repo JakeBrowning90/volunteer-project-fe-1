@@ -39,7 +39,7 @@ function UserDetail(
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Network error, please try again later.</p>;
   return (
-    <div>
+    <>
       {localStorage.role == "school" && (
         <Link to={`../npo/${opp.npo[0].id}`}>Back to School Student List</Link>
       )}
@@ -50,7 +50,7 @@ function UserDetail(
       <h2>{user.username}</h2>
       <span>TBA: Public info, contact details, etc</span>
       <span>TBA: Link to timesheet? or combine?</span>
-    </div>
+    </>
   );
 }
 

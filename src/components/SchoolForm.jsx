@@ -42,7 +42,7 @@ function SchoolForm(
 
   // Render
   return (
-    <div>
+    <>
       <Link to="/">Back to Home</Link>
 
       <form onSubmit={submitSchool}>
@@ -60,7 +60,7 @@ function SchoolForm(
 
         <button>Submit</button>
       </form>
-    </div>
+    </>
   );
 }
 
