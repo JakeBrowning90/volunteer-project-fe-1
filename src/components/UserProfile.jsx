@@ -41,10 +41,19 @@ function UserProfile(
       <Link to="/">Back to Home</Link>
       <h1>User Profile</h1>
       <h2>{user.username}</h2>
-      <span>TBA: form to update info</span>
+      <span>TBA: submit form to update info</span>
       <form action="">
-        <label htmlFor="profileUsernameInput">Username:</label>
-        <input type="text" id="profileUsernameInput"/>
+        <h1>Update User Info</h1>
+
+        <div className="formLabelInput ">
+          <label htmlFor="profileUsernameInput">Username:</label>
+          <input type="text" id="profileUsernameInput" />
+        </div>
+        <div className="formLabelInput ">
+          <label htmlFor="profileUsernameInput">Password:</label>
+          <input type="text" id="profileUsernameInput" />
+        </div>
+        <span>TBA: Contact info, etc</span>
         <button>Save Changes</button>
       </form>
     </>
