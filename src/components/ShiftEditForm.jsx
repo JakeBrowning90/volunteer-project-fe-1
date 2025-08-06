@@ -13,7 +13,8 @@ function ShiftEditForm(
   const [shift, setShift] = useState([]);
   const [newShiftDate, setNewShiftDate] = useState("");
   const [newShiftLength, setNewShiftLength] = useState(null);
-  const [shiftError, setShiftError] = useState(null);
+  const [shiftError, setShiftError] = useState(false);
+  const [deleteError, setDeleteError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -48,7 +49,6 @@ function ShiftEditForm(
 
   async function submitShiftEdit(e) {
     e.preventDefault();
-    console.log(newShiftDate);
     const response = await fetch(apiSource + `shift/${shiftId}`, {
       method: "PUT",
       mode: "cors",
@@ -64,8 +64,30 @@ function ShiftEditForm(
     console.log(shiftResponse);
     if (Array.isArray(shiftResponse.errors)) {
       setShiftError(true);
+      // TODO: display error message
     } else {
       setShiftError(false);
+      // TODO: Modal to verify clock-in?
+      // Redirect to home
+      window.location.href = `/user/${shift.volunteer[0].id}/timesheet`;
+    }
+  }
+
+  async function submitShiftDelete(e) {
+    e.preventDefault();
+    const response = await fetch(apiSource + `shift/${shiftId}`, {
+      method: "DELETE",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const deleteResponse = await response.json();
+    if (Array.isArray(deleteResponse.errors)) {
+      setDeleteError(true);
+      // TODO: display error message
+    } else {
+      setDeleteError(false);
       // TODO: Modal to verify clock-in?
       // Redirect to home
       window.location.href = `/user/${shift.volunteer[0].id}/timesheet`;
@@ -96,16 +118,10 @@ function ShiftEditForm(
         <span>Volunteer: {shift.volunteer[0].username}</span>
         <span>Opportunity: {shift.opportunity[0].title}</span>
         <span>
-          Date / Start time: {shift.starttime.slice(0, 10)}, 
-           {new Date(Date.parse(shift.starttime)).toTimeString().slice(0, 5)}
+          Date / Start time: {shift.starttime.slice(0, 10)},
+          {new Date(Date.parse(shift.starttime)).toTimeString().slice(0, 5)}
         </span>
         <span>Shift length (hours): {shift.length}</span>
-
-        {/* <div className="formLabelInput">
-          <label htmlFor="editDatetimeInput">Opportunity:</label>
-          <select id="editDatetimeInput">
-          </select>
-        </div> */}
 
         <div className="formLabelInput">
           <label htmlFor="editDatetimeInput">Shift Date and Start Time:</label>
@@ -135,10 +151,11 @@ function ShiftEditForm(
             <option value="6.0">6.0</option>
           </select>
         </div>
+        {/* TODO: Error message for bad submission */}
         <button>Save Changes</button>
       </form>
 
-      <form action="">
+      <form onSubmit={submitShiftDelete}>
         <h1>Delete Shift</h1>
 
         <button>Delete</button>

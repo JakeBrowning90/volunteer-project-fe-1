@@ -150,7 +150,7 @@ function Timesheet(
                       </>
                     ) : (
                       <>
-                        <td>{parseFloat(shift.length).toFixed(1)}</td>{" "}
+                        <td>{parseFloat(shift.length).toFixed(1)}</td>
                       </>
                     )}
                     {/* <td>{parseFloat(shift.length).toFixed(1)}</td> */}
