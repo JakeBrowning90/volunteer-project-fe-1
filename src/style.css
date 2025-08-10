@@ -145,6 +145,7 @@ th,
 td {
   border: 1px solid var(--color-text-grey);
   padding: 8px 5px;
+  align-content: center;
 }
 
 thead > *,

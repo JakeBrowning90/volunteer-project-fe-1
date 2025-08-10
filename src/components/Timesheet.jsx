@@ -91,7 +91,6 @@ function Timesheet(
       {localStorage.role == "org_admin" && (
         <>
           <Link to={`/`}>Back to Home</Link>
-          <span>TODO: Links to form to edit/delete shifts</span>
           <Link to={`/`}>TODO: Manually create shift</Link>
         </>
       )}

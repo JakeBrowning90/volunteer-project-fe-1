@@ -11,6 +11,7 @@ import UserProfile from "./components/UserProfile";
 import SchoolForm from "./components/SchoolForm";
 import SchoolDetail from "./components/SchoolDetail";
 import ShiftEditForm from "./components/ShiftEditForm";
+import ShiftNewForm from "./components/ShiftNewForm";
 import NPOForm from "./components/NPOForm";
 import NPODetail from "./components/NPODetail";
 import OpportunityForm from "./components/OpportunityForm";
@@ -67,6 +68,7 @@ function App() {
             element={<UserDetail />}
           /> */}
 
+          <Route path="/shift" element={<ShiftNewForm />} />
           <Route path="/shift/:shiftId" element={<ShiftEditForm />} />
 
           <Route path="/npoform" element={<NPOForm />} />

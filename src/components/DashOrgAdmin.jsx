@@ -59,7 +59,7 @@ function DashOrgAdmin(
           })}
         </ul>
       )}
-
+      <Link to={`/shift`}>Create New Shift</Link>
       {volunteerList.length == 0 ? (
         <span>No Volunteers registered</span>
       ) : (
