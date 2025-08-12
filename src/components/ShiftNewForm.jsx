@@ -11,15 +11,16 @@ function ShiftNewForm(
 ) {
   // State declarations
   const [shift, setShift] = useState([]);
+  const [oppList, setOppList] = useState([]);
+  const [volunteerList, setVolunteerList] = useState([]);
   const [newShiftDate, setNewShiftDate] = useState("");
   const [newShiftLength, setNewShiftLength] = useState(null);
   const [shiftError, setShiftError] = useState(false);
-  const [deleteError, setDeleteError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Functions
-  // Fetch shift info to populate header and form
+  // Fetch list of volunteers, list of opportunities
   // useEffect(() => {
   //   fetch(apiSource + `npo/?adminId=${localStorage.id}`, {
   //     mode: "cors",
@@ -33,7 +34,11 @@ function ShiftNewForm(
   //       }
   //       return response.json();
   //     })
-  //     .then((response) => setShift(response))
+  //     .then((response) => {
+  //       setVolunteerList(response[0]);
+  //       setOppList(response[1]);
+  //     })
+
   //     .catch((error) => setError(error))
   //     .finally(() => setLoading(false));
   // }, []);
