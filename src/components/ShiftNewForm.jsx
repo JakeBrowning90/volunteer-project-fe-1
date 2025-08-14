@@ -21,27 +21,27 @@ function ShiftNewForm(
 
   // Functions
   // Fetch list of volunteers, list of opportunities
-  // useEffect(() => {
-  //   fetch(apiSource + `npo/?adminId=${localStorage.id}`, {
-  //     mode: "cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => {
-  //       if (response.status >= 400) {
-  //         throw new Error("Fetch error");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((response) => {
-  //       setVolunteerList(response[0]);
-  //       setOppList(response[1]);
-  //     })
+  useEffect(() => {
+    fetch(apiSource + `npo/newShift/?adminId=${localStorage.id}`, {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("Fetch error");
+        }
+        return response.json();
+      })
+      .then((response) => {
+        setVolunteerList(response[0]);
+        setOppList(response[1]);
+      })
 
-  //     .catch((error) => setError(error))
-  //     .finally(() => setLoading(false));
-  // }, []);
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }, []);
 
   function handleNewShiftDate(e) {
     setNewShiftDate(e.target.value);
@@ -87,7 +87,15 @@ function ShiftNewForm(
         <h1>Create New Shift </h1>
         <div className="formLabelInput">
           <label htmlFor="volunteerSelect">Volunteer:</label>
-          <select name="volunteerSelect" id=""></select>
+          {volunteerList.length == 0 ? (
+            <option>No registered volunteers</option>
+          ) : (
+            <select name="volunteerSelect" id="">
+              {volunteerList.map((volunteer) => {
+                <option value={volunteer.id}>{volunteer.username}</option>;
+              })}
+            </select>
+          )}
         </div>
         <div className="formLabelInput">
           <label htmlFor="opportunitySelect">Opportunity:</label>
