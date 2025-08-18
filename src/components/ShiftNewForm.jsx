@@ -11,8 +11,8 @@ function ShiftNewForm(
 ) {
   // State declarations
   const [shift, setShift] = useState([]);
-  const [oppList, setOppList] = useState([]);
   const [volunteerList, setVolunteerList] = useState([]);
+  const [oppList, setOppList] = useState([]);
   const [newShiftDate, setNewShiftDate] = useState("");
   const [newShiftLength, setNewShiftLength] = useState(null);
   const [shiftError, setShiftError] = useState(false);
@@ -35,6 +35,7 @@ function ShiftNewForm(
         return response.json();
       })
       .then((response) => {
+        console.log(response);
         setVolunteerList(response[0]);
         setOppList(response[1]);
       })
@@ -53,8 +54,7 @@ function ShiftNewForm(
 
   async function submitShiftNew(e) {
     e.preventDefault();
-    const response = await fetch(apiSource + `shift/${shiftId}`, {
-      method: "PUT",
+    const response = await fetch(apiSource + `shift/`, {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
@@ -78,8 +78,8 @@ function ShiftNewForm(
   }
 
   // Render
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Network error, please try again later.</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Network error, please try again later.</p>;
   return (
     <>
       <Link to={`/`}>Back to Home</Link>
@@ -88,11 +88,15 @@ function ShiftNewForm(
         <div className="formLabelInput">
           <label htmlFor="volunteerSelect">Volunteer:</label>
           {volunteerList.length == 0 ? (
-            <option>No registered volunteers</option>
+            <span>No registered volunteers</span>
           ) : (
             <select name="volunteerSelect" id="">
               {volunteerList.map((volunteer) => {
-                <option value={volunteer.id}>{volunteer.username}</option>;
+                return (
+                  <option key={volunteer.id} value={volunteer.id}>
+                    {volunteer.username}
+                  </option>
+                );
               })}
             </select>
           )}
