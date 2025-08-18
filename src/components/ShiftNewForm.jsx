@@ -35,7 +35,7 @@ function ShiftNewForm(
         return response.json();
       })
       .then((response) => {
-        console.log(response);
+        console.log(response[1]);
         setVolunteerList(response[0]);
         setOppList(response[1]);
       })
@@ -54,27 +54,32 @@ function ShiftNewForm(
 
   async function submitShiftNew(e) {
     e.preventDefault();
-    const response = await fetch(apiSource + `shift/`, {
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        starttime: newShiftDate,
-        length: newShiftLength,
-      }),
-    });
-    const shiftResponse = await response.json();
-    console.log(shiftResponse);
-    if (Array.isArray(shiftResponse.errors)) {
-      setShiftError(true);
-      // TODO: display error message
-    } else {
-      setShiftError(false);
-      // TODO: Modal to verify clock-in?
-      // Redirect to home
-      window.location.href = `/user/${shift.volunteer[0].id}/timesheet`;
-    }
+    console.log();
+    console.log();
+    console.log(newShiftDate);
+    console.log(newShiftLength);
+
+    // const response = await fetch(apiSource + `shift/`, {
+    //   mode: "cors",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     starttime: newShiftDate,
+    //     length: newShiftLength,
+    //   }),
+    // });
+    // const shiftResponse = await response.json();
+    // console.log(shiftResponse);
+    // if (Array.isArray(shiftResponse.errors)) {
+    //   setShiftError(true);
+    //   // TODO: display error message
+    // } else {
+    //   setShiftError(false);
+    //   // TODO: Modal to verify clock-in?
+    //   // Redirect to home
+    //   window.location.href = `/user/${shift.volunteer[0].id}/timesheet`;
+    // }
   }
 
   // Render
@@ -103,7 +108,19 @@ function ShiftNewForm(
         </div>
         <div className="formLabelInput">
           <label htmlFor="opportunitySelect">Opportunity:</label>
-          <select name="opportunitySelect" id=""></select>
+          {oppList.length == 0 ? (
+            <span>No created opportunities</span>
+          ) : (
+            <select name="opportunitySelect" id="">
+              {oppList.map((opp) => {
+                return (
+                  <option key={opp.id} value={opp.id}>
+                    {opp.title} - {opp.npo[0].nponame}
+                  </option>
+                );
+              })}
+            </select>
+          )}{" "}
         </div>
         <div className="formLabelInput">
           <label htmlFor="editDatetimeInput">Shift Date and Start Time:</label>
