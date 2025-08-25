@@ -13,6 +13,8 @@ function ShiftNewForm(
   const [shift, setShift] = useState([]);
   const [volunteerList, setVolunteerList] = useState([]);
   const [oppList, setOppList] = useState([]);
+  const [newVolunteer, setNewVolunteer] = useState("");
+  const [newOpp, setNewOpp] = useState("");
   const [newShiftDate, setNewShiftDate] = useState("");
   const [newShiftLength, setNewShiftLength] = useState(null);
   const [shiftError, setShiftError] = useState(false);
@@ -44,6 +46,14 @@ function ShiftNewForm(
       .finally(() => setLoading(false));
   }, []);
 
+  function handleNewVolunteer(e) {
+    setNewVolunteer(e.target.value);
+  }
+
+  function handleNewOpp(e) {
+    setNewOpp(e.target.value);
+  }
+
   function handleNewShiftDate(e) {
     setNewShiftDate(e.target.value);
   }
@@ -54,8 +64,8 @@ function ShiftNewForm(
 
   async function submitShiftNew(e) {
     e.preventDefault();
-    console.log();
-    console.log();
+    console.log(newVolunteer);
+    console.log(newOpp);
     console.log(newShiftDate);
     console.log(newShiftLength);
 
@@ -95,7 +105,9 @@ function ShiftNewForm(
           {volunteerList.length == 0 ? (
             <span>No registered volunteers</span>
           ) : (
-            <select name="volunteerSelect" id="">
+            <select name="volunteerSelect" id="" onChange={handleNewVolunteer}>
+              <option value="">-Select a volunteer-</option>
+
               {volunteerList.map((volunteer) => {
                 return (
                   <option key={volunteer.id} value={volunteer.id}>
@@ -111,7 +123,9 @@ function ShiftNewForm(
           {oppList.length == 0 ? (
             <span>No created opportunities</span>
           ) : (
-            <select name="opportunitySelect" id="">
+            <select name="opportunitySelect" id="" onChange={handleNewOpp}>
+              <option value="">-Select an opportunity-</option>
+
               {oppList.map((opp) => {
                 return (
                   <option key={opp.id} value={opp.id}>
